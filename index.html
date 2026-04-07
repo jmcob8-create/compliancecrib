@@ -866,6 +866,42 @@ jointOwnership.addEventListener("change",()=>{
 });
 
 // ============================================================
+// SUPABASE CONNECTION
+// ============================================================
+const SUPABASE_URL="https://lsgkfhhjsraspxwgcimm.supabase.co";
+const SUPABASE_KEY="sb_publishable_AOr3ZgrGaO6m55j2f5mVkQ__vGWo52x";
+
+async function saveSubmission(data){
+  try{
+    const resp=await fetch(SUPABASE_URL+"/rest/v1/submissions",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "apikey":SUPABASE_KEY,
+        "Authorization":"Bearer "+SUPABASE_KEY,
+        "Prefer":"return=minimal"
+      },
+      body:JSON.stringify({
+        email:data.email,
+        property_type:data.propertyType,
+        epc_rating:data.epcRating,
+        tenancy_status:data.tenancyStatus,
+        tenancy_start_date:data.tenancyStartDate||null,
+        written_agreement:data.writtenAgreement||null,
+        rental_income:data.rentalIncome,
+        self_employment_income:data.selfEmploymentIncome,
+        joint_ownership:data.jointOwnership,
+        occupants:data.occupants||null,
+        households:data.households||null
+      })
+    });
+    if(!resp.ok)console.error("Supabase save failed:",resp.status);
+  }catch(err){
+    console.error("Supabase error:",err);
+  }
+}
+
+// ============================================================
 // FORM SUBMISSION
 // ============================================================
 document.getElementById("complianceForm").addEventListener("submit",function(e){
@@ -891,6 +927,9 @@ document.getElementById("complianceForm").addEventListener("submit",function(e){
     alert("Please complete all required fields.");
     return;
   }
+
+  // Save to Supabase (async, don't block report generation)
+  saveSubmission(data);
 
   generateReport(data);
 });
