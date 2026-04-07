@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ComplianceCrib — Free Landlord Compliance Report</title>
+<meta name="description" content="Know exactly what you owe as a landlord before the fines hit. Free personalised compliance report covering the Renters' Rights Act, Making Tax Digital, EPC, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1A3C5E;
+  --navy-light:#2A5A8A;
+  --sky:#E8EEF4;
+  --sky-deep:#D0DDE9;
+  --text:#1E1E1E;
+  --text-secondary:#4A5568;
+  --white:#FFFFFF;
+  --red:#C53030;
+  --red-bg:#FFF5F5;
+  --red-border:#FEB2B2;
+  --amber:#B7791F;
+  --amber-bg:#FFFFF0;
+  --amber-border:#FEFCBF;
+  --green:#276749;
+  --green-bg:#F0FFF4;
+  --green-border:#C6F6D5;
+  --radius:10px;
+  --shadow:0 1px 3px rgba(0,0,0,0.08),0 4px 12px rgba(0,0,0,0.04);
+  --shadow-lg:0 4px 20px rgba(0,0,0,0.1);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  color:var(--text);
+  background:#F7F9FB;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:680px;margin:0 auto;padding:0 20px}
+
+/* ---- HEADER ---- */
+header{
+  background:var(--navy);
+  padding:48px 20px 44px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+header::after{
+  content:'';position:absolute;bottom:-30px;left:0;right:0;height:60px;
+  background:var(--navy);border-radius:0 0 50% 50%;
+}
+header h1{
+  font-family:'Fraunces',serif;
+  font-weight:800;font-size:2.4rem;color:var(--white);
+  letter-spacing:-0.5px;margin-bottom:8px;
+  position:relative;z-index:1;
+}
+header p{
+  color:rgba(255,255,255,0.8);font-size:1.05rem;
+  max-width:440px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.badge{
+  display:inline-block;margin-top:16px;
+  background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);
+  color:var(--white);font-size:0.78rem;font-weight:600;
+  padding:5px 14px;border-radius:20px;
+  position:relative;z-index:1;letter-spacing:0.3px;
+}
+
+/* ---- FORM ---- */
+.form-section{
+  background:var(--white);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:36px 28px 32px;
+  margin-top:40px;
+  position:relative;z-index:2;
+}
+.form-section h2{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1.35rem;color:var(--navy);margin-bottom:4px;
+}
+.form-section .subtitle{
+  color:var(--text-secondary);font-size:0.9rem;margin-bottom:28px;
+}
+.field{margin-bottom:20px}
+.field label{
+  display:block;font-weight:600;font-size:0.88rem;
+  color:var(--navy);margin-bottom:6px;
+}
+.field .hint{
+  font-size:0.78rem;color:var(--text-secondary);
+  margin-bottom:6px;font-weight:400;
+}
+.field select,.field input{
+  width:100%;padding:11px 14px;
+  border:1.5px solid var(--sky-deep);
+  border-radius:8px;font-size:0.95rem;
+  font-family:inherit;color:var(--text);
+  background:var(--white);
+  transition:border-color 0.2s;
+  appearance:auto;
+}
+.field select:focus,.field input:focus{
+  outline:none;border-color:var(--navy-light);
+  box-shadow:0 0 0 3px rgba(26,60,94,0.1);
+}
+.conditional{display:none}
+.conditional.visible{display:block}
+
+.warning-box{
+  background:var(--amber-bg);border:1px solid var(--amber-border);
+  border-radius:8px;padding:12px 16px;margin-top:-8px;margin-bottom:20px;
+  font-size:0.82rem;color:var(--amber);line-height:1.5;
+}
+
+.submit-btn{
+  width:100%;padding:14px;
+  background:var(--navy);color:var(--white);
+  font-family:inherit;font-size:1rem;font-weight:600;
+  border:none;border-radius:8px;cursor:pointer;
+  transition:background 0.2s,transform 0.1s;
+  margin-top:8px;
+}
+.submit-btn:hover{background:var(--navy-light)}
+.submit-btn:active{transform:scale(0.99)}
+
+/* ---- REPORT ---- */
+#report{display:none;margin-top:32px;padding-bottom:60px}
+
+.report-header{
+  text-align:center;margin-bottom:28px;
+}
+.report-header h2{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1.4rem;color:var(--navy);margin-bottom:4px;
+}
+.report-header p{color:var(--text-secondary);font-size:0.88rem}
+.report-header .generated{
+  font-size:0.78rem;color:var(--text-secondary);margin-top:8px;
+  font-style:italic;
+}
+
+/* Dashboard Grid */
+.dashboard{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));
+  gap:10px;margin-bottom:32px;
+}
+.dash-item{
+  border-radius:8px;padding:14px 12px;text-align:center;
+  font-size:0.78rem;font-weight:600;line-height:1.3;
+  border:1.5px solid;
+}
+.dash-item .icon{font-size:1.3rem;margin-bottom:4px}
+.dash-red{background:var(--red-bg);border-color:var(--red-border);color:var(--red)}
+.dash-amber{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber)}
+.dash-green{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
+
+/* Obligation Cards */
+.section-title{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1.15rem;margin:28px 0 14px;
+  padding-left:4px;
+}
+.section-title.red{color:var(--red)}
+.section-title.amber{color:var(--amber)}
+.section-title.green{color:var(--green)}
+
+.card{
+  background:var(--white);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:20px 22px;
+  margin-bottom:14px;border-left:4px solid;
+}
+.card.red{border-left-color:var(--red)}
+.card.amber{border-left-color:var(--amber)}
+.card.green{border-left-color:var(--green)}
+
+.card h3{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.4}
+.card .explanation{font-size:0.85rem;color:var(--text-secondary);margin-bottom:10px;line-height:1.55}
+.card .meta{font-size:0.8rem;line-height:1.6}
+.card .meta strong{color:var(--text)}
+.card .meta .deadline-value{font-weight:700}
+.card .meta .penalty-value{color:var(--red);font-weight:600}
+.card .meta .action-value{color:var(--navy);font-weight:500}
+.card .source{
+  margin-top:10px;padding-top:10px;
+  border-top:1px solid var(--sky);
+  font-size:0.75rem;
+}
+.card .source a{color:var(--navy-light);text-decoration:none}
+.card .source a:hover{text-decoration:underline}
+.card .source .verified{color:var(--text-secondary);margin-left:8px}
+
+.card .countdown{
+  display:inline-block;
+  background:var(--red-bg);color:var(--red);
+  font-size:0.75rem;font-weight:700;
+  padding:2px 8px;border-radius:4px;
+  margin-left:6px;
+}
+.card .countdown.amber-cd{background:var(--amber-bg);color:var(--amber)}
+
+/* Council Notice */
+.council-notice{
+  background:var(--amber-bg);
+  border:2px solid var(--amber-border);
+  border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px;
+}
+.council-notice h3{
+  font-size:0.95rem;font-weight:700;color:var(--amber);margin-bottom:8px;
+}
+.council-notice p{font-size:0.85rem;color:var(--text-secondary);line-height:1.55}
+
+/* Disclaimer */
+.disclaimer{
+  margin-top:32px;padding:20px;
+  background:var(--sky);border-radius:var(--radius);
+  font-size:0.78rem;color:var(--text-secondary);line-height:1.6;
+}
+.disclaimer strong{color:var(--text)}
+
+/* Footer */
+footer{
+  text-align:center;padding:32px 20px;
+  font-size:0.78rem;color:var(--text-secondary);
+}
+footer a{color:var(--navy-light);text-decoration:none}
+
+/* Responsive */
+@media(max-width:480px){
+  header h1{font-size:1.9rem}
+  header p{font-size:0.95rem}
+  .form-section{padding:28px 20px 24px}
+  .dashboard{grid-template-columns:repeat(2,1fr)}
+  .card{padding:16px 18px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ComplianceCrib</h1>
+  <p>Know exactly what you owe as a landlord — before the fines hit.</p>
+  <span class="badge">Free compliance report · 2 minutes</span>
+</header>
+
+<main class="container">
+
+  <!-- ======== FORM ======== -->
+  <div class="form-section" id="formSection">
+    <h2>Your Property Details</h2>
+    <p class="subtitle">Answer a few questions and we'll generate your personalised compliance report.</p>
+
+    <form id="complianceForm" novalidate>
+
+      <div class="field">
+        <label for="propertyType">Property type</label>
+        <select id="propertyType" required>
+          <option value="">Select...</option>
+          <option value="flat">Flat / Apartment</option>
+          <option value="terraced">Terraced house</option>
+          <option value="semi">Semi-detached house</option>
+          <option value="detached">Detached house</option>
+          <option value="hmo">HMO (House in Multiple Occupation)</option>
+        </select>
+      </div>
+
+      <div class="field conditional" id="hmoFieldsWrapper">
+        <label for="occupants">Number of occupants</label>
+        <input type="number" id="occupants" min="1" max="50" placeholder="e.g. 6">
+      </div>
+      <div class="field conditional" id="householdsWrapper">
+        <label for="households">Number of separate households</label>
+        <p class="hint">A household is one person or a group of related people (e.g. a couple).</p>
+        <input type="number" id="households" min="1" max="50" placeholder="e.g. 3">
+      </div>
+
+      <div class="field">
+        <label for="epcRating">Current EPC rating</label>
+        <select id="epcRating" required>
+          <option value="">Select...</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
+          <option value="F">F</option>
+          <option value="G">G</option>
+          <option value="unknown">Don't know</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="tenancyStatus">Tenancy status</label>
+        <select id="tenancyStatus" required>
+          <option value="">Select...</option>
+          <option value="occupied">Currently occupied by tenants</option>
+          <option value="vacant">Vacant</option>
+          <option value="new_tenancy_planned">Planning a new tenancy</option>
+        </select>
+      </div>
+
+      <div class="field conditional" id="tenancyDateWrapper">
+        <label for="tenancyStartDate">When did the current tenancy start?</label>
+        <input type="date" id="tenancyStartDate">
+      </div>
+
+      <div class="field conditional" id="writtenAgreementWrapper">
+        <label for="writtenAgreement">Do you have a written tenancy agreement?</label>
+        <select id="writtenAgreement">
+          <option value="">Select...</option>
+          <option value="yes">Yes</option>
+          <option value="no">No — it's a verbal agreement</option>
+          <option value="unsure">Not sure</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="rentalIncome">Your gross annual rental income (before expenses)</label>
+        <p class="hint">If you own jointly, enter your personal share of the rental income.</p>
+        <select id="rentalIncome" required>
+          <option value="">Select...</option>
+          <option value="under_20k">Under £20,000</option>
+          <option value="20k_to_30k">£20,000 – £30,000</option>
+          <option value="30k_to_50k">£30,000 – £50,000</option>
+          <option value="over_50k">Over £50,000</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="selfEmploymentIncome">Do you also have self-employment income?</label>
+        <p class="hint">MTD thresholds are based on rental + self-employment income combined.</p>
+        <select id="selfEmploymentIncome" required>
+          <option value="">Select...</option>
+          <option value="none">None</option>
+          <option value="under_20k">Under £20,000</option>
+          <option value="20k_to_30k">£20,000 – £30,000</option>
+          <option value="over_30k">Over £30,000</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="jointOwnership">Do you own this property jointly?</label>
+        <select id="jointOwnership" required>
+          <option value="">Select...</option>
+          <option value="no">No — sole owner</option>
+          <option value="yes">Yes — jointly owned</option>
+        </select>
+      </div>
+
+      <div class="conditional" id="jointWarning">
+        <div class="warning-box">
+          ⚠️ MTD thresholds are based on your personal share of rental income, not the total property income. Make sure the income bracket above reflects your share.
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Your email address</label>
+        <p class="hint">We'll send you deadline reminders. No spam, ever.</p>
+        <input type="email" id="email" placeholder="you@example.com" required>
+      </div>
+
+      <button type="submit" class="submit-btn">Get My Free Compliance Report</button>
+    </form>
+  </div>
+
+  <!-- ======== REPORT ======== -->
+  <div id="report">
+    <div class="report-header">
+      <h2>Your Compliance Report</h2>
+      <p>Based on the property details you provided</p>
+      <p class="generated" id="reportDate"></p>
+    </div>
+
+    <div class="dashboard" id="dashboard"></div>
+
+    <!-- Council Notice — always shown -->
+    <div class="council-notice">
+      <h3>⚠️ Council Licensing: Not Yet Assessed</h3>
+      <p>This report covers all <strong>national</strong> obligations. Council-specific requirements — selective licensing, additional HMO licensing — vary by local authority and are not yet included. Selective licensing is one of the most common ways landlords are fined. <strong>Check with your local council</strong> or visit <a href="https://www.gov.uk/find-licences/house-in-multiple-occupation-licence" target="_blank" style="color:var(--amber)">gov.uk</a> to confirm whether a licence is required for your property.</p>
+    </div>
+
+    <div id="redSection"></div>
+    <div id="amberSection"></div>
+    <div id="greenSection"></div>
+
+    <div class="disclaimer">
+      <strong>Important:</strong> ComplianceCrib provides regulatory information based on publicly available government publications. It does not constitute legal advice. For situation-specific legal guidance, consult a qualified solicitor. All obligations are sourced from official government publications with verification dates shown on each item.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 ComplianceCrib. <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a></p>
+</footer>
+
+<script>
+// ============================================================
+// REGULATIONS DATA (embedded from regulations.json)
+// ============================================================
+const REGULATIONS = [
+  {
+    id:"rra_information_sheet",category:"renters_rights_act",
+    headline:"You must issue the Information Sheet to your tenants by 31 May 2026",
+    explanation:"Landlords with existing written assured shorthold tenancies must provide each tenant with the government-produced Information Sheet explaining how the Renters' Rights Act reforms affect their tenancy. This must be sent digitally or on paper.",
+    deadline:"2026-05-31",deadlineLabel:"31 May 2026",
+    penalty:"Civil penalty of up to £7,000 for initial breach. Up to £40,000 for repeated breaches.",
+    action:"Download the Information Sheet from GOV.UK and send it to every current tenant with a written AST, either by email or post. Keep proof of delivery.",
+    sourceUrl:"https://www.gov.uk/government/publications/the-renters-rights-act-information-sheet-2026",
+    sourceName:"GOV.UK — Renters' Rights Act Information Sheet 2026",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus!=="occupied")return null;
+      if(d.writtenAgreement==="no")return null;
+      if(d.tenancyStartDate&&new Date(d.tenancyStartDate)>=new Date("2026-05-01"))return null;
+      if(d.writtenAgreement==="yes")return"red";
+      if(d.writtenAgreement==="unsure")return"amber";
+      return"red";
+    }
+  },
+  {
+    id:"rra_written_statement",category:"renters_rights_act",
+    headline:"You must provide a written statement of tenancy terms by 31 May 2026",
+    explanation:"If your existing tenancy is based on a verbal agreement with no written record, you must provide your tenant with a written document covering specific required information by 31 May 2026.",
+    deadline:"2026-05-31",deadlineLabel:"31 May 2026",
+    penalty:"Civil penalty of up to £7,000 for initial breach. Up to £40,000 for repeated breaches.",
+    action:"Create a written statement of the tenancy terms including all required information specified in GOV.UK guidance. Provide it to your tenant by 31 May 2026.",
+    sourceUrl:"https://www.gov.uk/guidance/renting-out-your-property-guidance-for-landlords-and-letting-agents/tenancy-agreements-written-information-for-your-tenant",
+    sourceName:"GOV.UK — Written information for your tenant",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus!=="occupied")return null;
+      if(d.writtenAgreement!=="no")return null;
+      if(d.tenancyStartDate&&new Date(d.tenancyStartDate)>=new Date("2026-05-01"))return null;
+      return"red";
+    }
+  },
+  {
+    id:"rra_ground_4a",category:"renters_rights_act",
+    headline:"Student landlords: issue Ground 4A written notice by 31 May 2026",
+    explanation:"If you let an HMO to full-time students and want to use Ground 4A to regain possession, you must give existing tenants written notice by 31 May 2026. Possession notice can be served between 1 May and 30 July 2026 with at least 2 months' notice.",
+    deadline:"2026-05-31",deadlineLabel:"31 May 2026 (written notice)",
+    penalty:"Loss of the right to use Ground 4A for that tenancy.",
+    action:"Write to your student tenants before 31 May 2026 informing them you may use Ground 4A.",
+    sourceUrl:"https://www.gov.uk/guidance/renting-out-your-property-guidance-for-landlords-and-letting-agents/ending-a-tenancy",
+    sourceName:"GOV.UK — Ending a tenancy guidance",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.propertyType!=="hmo")return null;
+      if(d.tenancyStatus!=="occupied")return null;
+      if(d.tenancyStartDate&&new Date(d.tenancyStartDate)>=new Date("2026-05-01"))return null;
+      return"amber";
+    }
+  },
+  {
+    id:"rra_section21",category:"renters_rights_act",
+    headline:"Section 21 'no fault' evictions are abolished from 1 May 2026",
+    explanation:"You can no longer serve a Section 21 notice on or after 1 May 2026. All existing ASTs automatically convert to assured periodic tenancies. You must use reformed Section 8 grounds to regain possession.",
+    deadline:"2026-05-01",deadlineLabel:"1 May 2026",
+    penalty:"Any Section 21 notice served on or after 1 May 2026 is invalid. Illegal eviction can result in penalties up to £40,000 or criminal prosecution.",
+    action:"Do not serve any new Section 21 notices. Use the reformed Section 8 grounds with correct notice periods and new prescribed forms.",
+    sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
+    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"rra_section8_reforms",category:"renters_rights_act",
+    headline:"Section 8 possession grounds have been reformed",
+    explanation:"Rent arrears threshold increases from 2 to 3 months. 12-month protected period at tenancy start where landlords cannot evict to sell or move in. Selling/moving-in grounds require 4 months' notice.",
+    deadline:"2026-05-01",deadlineLabel:"1 May 2026",
+    penalty:"Using incorrect grounds or notice periods invalidates the notice. Misuse can result in penalties up to £40,000 and rent repayment orders.",
+    action:"Familiarise yourself with the reformed grounds for possession. Use new prescribed forms available on GOV.UK from 1 May 2026.",
+    sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
+    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"rra_rent_increase",category:"renters_rights_act",
+    headline:"Rent increases: once per year, Section 13 only, 2 months' notice",
+    explanation:"From 1 May 2026, all rent increases must use the Section 13 process with at least 2 months' notice. Rent can only be increased once per year. Existing rent review clauses are no longer enforceable. Tenants can challenge at the First-tier Tribunal.",
+    deadline:"2026-05-01",deadlineLabel:"1 May 2026",
+    penalty:"Rent increase is unenforceable if not served via the correct process.",
+    action:"Use Form 4A for all rent increases. Give at least 2 months' notice. Do not rely on existing rent review clauses.",
+    sourceUrl:"https://www.gov.uk/guidance/renting-out-your-property-guidance-for-landlords-and-letting-agents/renters-rights-act-an-overview-for-landlords",
+    sourceName:"GOV.UK — Guidance for landlords",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"rra_pets",category:"renters_rights_act",
+    headline:"You must consider tenant requests to keep a pet",
+    explanation:"From 1 May 2026, tenants can request permission to keep a pet. You must respond within 4 weeks and cannot unreasonably refuse. Blanket 'no pets' clauses are no longer enforceable.",
+    deadline:"2026-05-01",deadlineLabel:"1 May 2026",
+    penalty:"Blanket pet bans are void. Unreasonable refusal can be challenged through the Ombudsman or court.",
+    action:"Remove blanket 'no pets' clauses from tenancy templates. Prepare to assess pet requests individually within 4 weeks.",
+    sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
+    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"rra_bidding",category:"renters_rights_act",
+    headline:"Rental bidding is prohibited; advance rent capped at 1 month",
+    explanation:"From 1 May 2026, you must publish an asking rent and cannot accept bids above it. Advance rent is capped at one month, payable only after the agreement is signed.",
+    deadline:"2026-05-01",deadlineLabel:"1 May 2026",
+    penalty:"Council fines of up to £5,000 for advance rent breaches. Up to £7,000 for rental bidding breaches.",
+    action:"Include a specific asking price on all advertisements. Do not accept offers above the advertised rent. Only request up to one month's rent in advance after signing.",
+    sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
+    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="occupied"&&!d.newTenancyPlanned)return null;
+      return"amber";
+    }
+  },
+  {
+    id:"rra_prs_database",category:"renters_rights_act",
+    headline:"PRS Database registration will be required (late 2026)",
+    explanation:"All private landlords will be legally required to register themselves and their properties on a national database. Failure to register blocks most possession grounds. Expected late 2026.",
+    deadline:null,deadlineLabel:"Late 2026 (date TBC)",
+    penalty:"Civil penalty up to £7,000. Up to £40,000 for repeated breaches. Loss of possession grounds.",
+    action:"Monitor GOV.UK for the registration launch date. Prepare your property details for prompt registration.",
+    sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
+    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"rra_ombudsman",category:"renters_rights_act",
+    headline:"PRS Landlord Ombudsman membership will be mandatory (late 2026)",
+    explanation:"All private landlords must join the new PRS Landlord Ombudsman Service. Tenants can complain for free. The ombudsman can compel remedial action and compensation. Expected late 2026.",
+    deadline:null,deadlineLabel:"Late 2026 (date TBC)",
+    penalty:"Civil penalty up to £7,000. Up to £40,000 for continuing breaches.",
+    action:"Monitor GOV.UK for the ombudsman service launch date.",
+    sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
+    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"rra_decent_homes",category:"renters_rights_act",
+    headline:"Decent Homes Standard and Awaab's Law will apply to PRS (date TBC)",
+    explanation:"The Decent Homes Standard will apply to the private rented sector for the first time. Awaab's Law will set legal timeframes for addressing hazards like damp and mould. Dates not yet confirmed.",
+    deadline:null,deadlineLabel:"TBC",
+    penalty:"Improvement notices, civil penalties up to £7,000, criminal prosecution, and rent repayment orders.",
+    action:"Proactively address any damp, mould, or hazard issues in your properties now.",
+    sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
+    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  // ---- MTD ----
+  {
+    id:"mtd_phase1",category:"mtd",
+    headline:"Making Tax Digital Phase 1: mandatory from 6 April 2026 if qualifying income exceeds £50,000",
+    explanation:"If your combined gross income from self-employment and property exceeds £50,000 (based on 2024/25 figures), you must use MTD-compatible software for digital records and quarterly HMRC updates. This is already in effect.",
+    deadline:"2026-04-06",deadlineLabel:"6 April 2026 (already in effect)",
+    penalty:"Penalty points: 1 point per late quarterly update. £200 fine at 4 points. 12-month grace period on late submission penalties.",
+    action:"Calculate your qualifying income (gross rental + self-employment). If over £50,000, sign up for MTD-compatible software immediately.",
+    sourceUrl:"https://www.gov.uk/government/collections/making-tax-digital-for-income-tax-for-businesses-step-by-step",
+    sourceName:"GOV.UK — Making Tax Digital step by step",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      const c=combinedIncome(d);
+      if(c==="over_50k")return"red";
+      if(c==="may_exceed_50k")return"amber";
+      return null;
+    }
+  },
+  {
+    id:"mtd_phase2",category:"mtd",
+    headline:"Making Tax Digital Phase 2: mandatory from 6 April 2027 if qualifying income exceeds £30,000",
+    explanation:"From April 2027, MTD becomes mandatory if combined gross qualifying income exceeds £30,000. Same rules: digital records, quarterly updates, MTD-compatible software.",
+    deadline:"2027-04-06",deadlineLabel:"6 April 2027",
+    penalty:"Same penalty points system as Phase 1.",
+    action:"If your qualifying income is between £30,000 and £50,000, begin preparing now. Research MTD-compatible software.",
+    sourceUrl:"https://www.gov.uk/government/collections/making-tax-digital-for-income-tax-for-businesses-step-by-step",
+    sourceName:"GOV.UK — Making Tax Digital step by step",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      const c=combinedIncome(d);
+      if(c==="30k_to_50k"||c==="may_exceed_30k")return"amber";
+      return null;
+    }
+  },
+  {
+    id:"mtd_phase3",category:"mtd",
+    headline:"Making Tax Digital Phase 3: mandatory from 6 April 2028 if qualifying income exceeds £20,000",
+    explanation:"From April 2028, MTD becomes mandatory if combined gross qualifying income exceeds £20,000.",
+    deadline:"2028-04-06",deadlineLabel:"6 April 2028",
+    penalty:"Same penalty points system as Phase 1.",
+    action:"If your qualifying income is between £20,000 and £30,000, begin preparing. Monitor HMRC guidance.",
+    sourceUrl:"https://www.gov.uk/government/collections/making-tax-digital-for-income-tax-for-businesses-step-by-step",
+    sourceName:"GOV.UK — Making Tax Digital step by step",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      const c=combinedIncome(d);
+      if(c==="20k_to_30k"||c==="may_exceed_20k")return"amber";
+      return null;
+    }
+  },
+  {
+    id:"mtd_joint_warning",category:"mtd",
+    headline:"Joint owners: MTD thresholds are based on your personal share of rental income",
+    explanation:"If you own jointly, the MTD qualifying income threshold is based on your individual share of gross rental income, not the total. Ensure the income bracket you selected reflects your share.",
+    deadline:null,deadlineLabel:"Ongoing — applies to all MTD phases",
+    penalty:"Incorrect calculation could mean failing to register for MTD when required.",
+    action:"Calculate your personal share of gross rental income based on your ownership percentage.",
+    sourceUrl:"https://www.gov.uk/government/collections/making-tax-digital-for-income-tax-for-businesses-step-by-step",
+    sourceName:"GOV.UK — Making Tax Digital step by step",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.jointOwnership!=="yes")return null;
+      return"amber";
+    }
+  },
+  // ---- EPC ----
+  {
+    id:"epc_current",category:"epc",
+    headline:"Your property must have an EPC rating of E or above to be legally let",
+    explanation:"Since April 2020, it is illegal to let a property with an EPC rating below E (i.e. F or G). This applies to both new and existing tenancies.",
+    deadline:null,deadlineLabel:"Ongoing (in force since April 2020)",
+    penalty:"Fine of up to £5,000 per property.",
+    action:"Check your EPC rating. If F or G, you cannot legally let until you improve to at least E or register a valid exemption.",
+    sourceUrl:"https://www.gov.uk/guidance/domestic-private-rented-property-minimum-energy-efficiency-standard-landlord-guidance",
+    sourceName:"GOV.UK — Minimum energy efficiency standard guidance",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.epcRating==="F"||d.epcRating==="G")return"red";
+      if(d.epcRating==="unknown")return"amber";
+      return null;
+    }
+  },
+  {
+    id:"epc_future",category:"epc",
+    headline:"EPC rating of C or above required by 1 October 2030",
+    explanation:"All private rental properties must achieve EPC Band C by October 2030. Cost cap of £10,000 per property. Fines of up to £30,000 proposed. A Band C achieved under current methodology before October 2029 is valid for 10 years.",
+    deadline:"2030-10-01",deadlineLabel:"1 October 2030",
+    penalty:"Fines of up to £30,000 per property (proposed).",
+    action:"If your EPC is D or E, start planning energy efficiency improvements now. Get quotes for insulation and heating upgrades.",
+    sourceUrl:"https://www.gov.uk/guidance/domestic-private-rented-property-minimum-energy-efficiency-standard-landlord-guidance",
+    sourceName:"GOV.UK — Minimum energy efficiency standard guidance",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.epcRating==="D"||d.epcRating==="E")return"amber";
+      return null;
+    }
+  },
+  // ---- Ongoing obligations ----
+  {
+    id:"gas_safety",category:"gas_safety",
+    headline:"You must have a valid Gas Safety Certificate, renewed annually",
+    explanation:"All gas appliances, fittings and flues in rented properties must be checked annually by a Gas Safe registered engineer. A copy must be provided to tenants within 28 days of the check.",
+    deadline:null,deadlineLabel:"Annual — check your certificate expiry date",
+    penalty:"Fine of up to £6,000 and/or up to 6 months' imprisonment.",
+    action:"Check your Gas Safety Certificate expiry date. Book your annual check before it expires. If your property has no gas supply, this obligation does not apply.",
+    sourceUrl:"https://www.hse.gov.uk/gas/landlords/index.htm",
+    sourceName:"HSE — Gas safety for landlords",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"eicr",category:"eicr",
+    headline:"You must have a valid EICR, renewed every 5 years",
+    explanation:"Electrical installations must be inspected and tested every 5 years. The EICR must be provided to tenants within 28 days. Any urgent remedial work must be completed within 28 days.",
+    deadline:null,deadlineLabel:"Every 5 years — check your EICR expiry date",
+    penalty:"Civil penalty of up to £30,000 per breach.",
+    action:"Check your EICR expiry date. If you don't have one, arrange an inspection immediately.",
+    sourceUrl:"https://www.legislation.gov.uk/uksi/2020/312/part/2",
+    sourceName:"Legislation.gov.uk — Electrical Safety Standards 2020",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"deposit_protection",category:"deposit_protection",
+    headline:"You must protect your tenant's deposit in an approved scheme within 30 days",
+    explanation:"Deposits must be protected in one of three approved schemes: DPS, MyDeposits, or TDS. Prescribed information must be provided within 30 days. Courts will only grant possession if the deposit is properly protected.",
+    deadline:null,deadlineLabel:"Within 30 days of receiving the deposit",
+    penalty:"Court can order 1 to 3 times the deposit amount. Cannot use possession grounds until deposit is protected or returned.",
+    action:"Verify your tenant's deposit is registered in an approved scheme and that you provided all prescribed information.",
+    sourceUrl:"https://www.gov.uk/tenancy-deposit-protection",
+    sourceName:"GOV.UK — Tenancy deposit protection",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus!=="occupied")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"right_to_rent",category:"right_to_rent",
+    headline:"You must check your tenant's right to rent before the tenancy starts",
+    explanation:"Under the Immigration Act 2014, you must verify that all adult occupiers have the right to rent in England before granting a tenancy. Keep copies of documents checked. Follow-up checks are required for time-limited permissions.",
+    deadline:null,deadlineLabel:"Before the tenancy starts, for every adult occupier",
+    penalty:"Civil penalty of up to £3,000 per tenant. Repeat offences: criminal prosecution with up to 5 years' imprisonment.",
+    action:"Conduct right to rent checks for all adult occupiers before the tenancy starts. Keep copies. Set reminders for follow-up checks.",
+    sourceUrl:"https://www.gov.uk/check-tenant-right-to-rent-documents",
+    sourceName:"GOV.UK — Check a tenant's right to rent",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"smoke_co",category:"smoke_co_alarms",
+    headline:"You must have smoke alarms on every storey and CO alarms in rooms with combustion appliances",
+    explanation:"At least one smoke alarm on each storey used as living accommodation. A carbon monoxide alarm in any room with a fixed combustion appliance (excluding gas cookers). Landlords must repair or replace faulty alarms.",
+    deadline:null,deadlineLabel:"Ongoing (in force since October 2022)",
+    penalty:"Fine of up to £5,000 for failing to comply with a remedial notice.",
+    action:"Check all smoke and CO alarms are installed correctly and working. Test at the start of each tenancy.",
+    sourceUrl:"https://www.gov.uk/government/publications/smoke-and-carbon-monoxide-alarms-explanatory-booklet-for-landlords",
+    sourceName:"GOV.UK — Smoke and CO Alarm Regulations guidance",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"legionella",category:"legionella",
+    headline:"You must conduct a Legionella risk assessment before letting",
+    explanation:"You must assess the risk of legionella in your water systems. For most domestic properties, a simple self-assessment is sufficient. Key measures: hot water at 60°C, flush systems before letting, clean showerheads regularly.",
+    deadline:null,deadlineLabel:"Before letting — review periodically",
+    penalty:"Prosecution under Health and Safety at Work Act if a tenant contracts Legionnaires' disease due to negligence.",
+    action:"Conduct a simple legionella risk assessment. Flush the water system before new tenancies. Review periodically.",
+    sourceUrl:"https://www.hse.gov.uk/legionnaires/legionella-landlords-responsibilities.htm",
+    sourceName:"HSE — Legionella and landlords' responsibilities",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.tenancyStatus==="vacant")return null;
+      return"amber";
+    }
+  },
+  {
+    id:"hmo_licence",category:"hmo",
+    headline:"You must have an HMO licence if your property is let to 5+ people from 2+ households",
+    explanation:"A mandatory HMO licence is required for properties rented to 5 or more people from more than 1 household sharing facilities. Smaller HMOs may also require a licence depending on council schemes. Valid for up to 5 years.",
+    deadline:null,deadlineLabel:"Ongoing — licence must be in place before letting as an HMO",
+    penalty:"Unlimited fine. Tenants can apply for rent repayment orders of up to 24 months' rent.",
+    action:"Determine if your property meets the HMO definition. Contact your local council to check if a licence is required.",
+    sourceUrl:"https://www.gov.uk/find-licences/house-in-multiple-occupation-licence",
+    sourceName:"GOV.UK — HMO licence",
+    lastVerified:"2026-04-07",
+    evaluate(d){
+      if(d.propertyType==="hmo")return"red";
+      const occ=parseInt(d.occupants)||0;
+      const hh=parseInt(d.households)||0;
+      if(occ>=5&&hh>=2)return"red";
+      if(occ>=3&&hh>=2)return"amber";
+      return null;
+    }
+  }
+];
+
+// ============================================================
+// CATEGORY DISPLAY NAMES
+// ============================================================
+const CAT_NAMES={
+  renters_rights_act:"Renters' Rights Act",
+  mtd:"Making Tax Digital",
+  epc:"EPC Rating",
+  gas_safety:"Gas Safety",
+  eicr:"Electrical Safety",
+  deposit_protection:"Deposit Protection",
+  right_to_rent:"Right to Rent",
+  smoke_co_alarms:"Smoke & CO Alarms",
+  legionella:"Legionella",
+  hmo:"HMO Licensing"
+};
+
+// ============================================================
+// COMBINED INCOME LOGIC (conservative bracket arithmetic)
+// ============================================================
+const INCOME_MAP={under_20k:10000,"20k_to_30k":25000,"30k_to_50k":40000,over_50k:60000,none:0,over_30k:35000};
+const INCOME_MAX={under_20k:19999,"20k_to_30k":30000,"30k_to_50k":50000,over_50k:999999,none:0,over_30k:999999};
+
+function combinedIncome(d){
+  const rMin=INCOME_MAP[d.rentalIncome]||0;
+  const rMax=INCOME_MAX[d.rentalIncome]||0;
+  const sMin=INCOME_MAP[d.selfEmploymentIncome]||0;
+  const sMax=INCOME_MAX[d.selfEmploymentIncome]||0;
+  const minTotal=rMin+sMin;
+  const maxTotal=rMax+sMax;
+
+  if(minTotal>50000)return"over_50k";
+  if(maxTotal>50000&&minTotal<=50000)return"may_exceed_50k";
+  if(minTotal>30000)return"30k_to_50k";
+  if(maxTotal>30000&&minTotal<=30000)return"may_exceed_30k";
+  if(minTotal>20000)return"20k_to_30k";
+  if(maxTotal>20000&&minTotal<=20000)return"may_exceed_20k";
+  return"under_20k";
+}
+
+// ============================================================
+// DAYS REMAINING
+// ============================================================
+function daysUntil(dateStr){
+  if(!dateStr)return null;
+  const target=new Date(dateStr+"T00:00:00");
+  const now=new Date();
+  now.setHours(0,0,0,0);
+  return Math.ceil((target-now)/(1000*60*60*24));
+}
+
+// ============================================================
+// CONDITIONAL FORM FIELDS
+// ============================================================
+const propertyType=document.getElementById("propertyType");
+const tenancyStatus=document.getElementById("tenancyStatus");
+const jointOwnership=document.getElementById("jointOwnership");
+const hmoFields=document.getElementById("hmoFieldsWrapper");
+const householdsW=document.getElementById("householdsWrapper");
+const tenancyDateW=document.getElementById("tenancyDateWrapper");
+const writtenAgrW=document.getElementById("writtenAgreementWrapper");
+const jointWarn=document.getElementById("jointWarning");
+
+propertyType.addEventListener("change",()=>{
+  const show=propertyType.value==="hmo";
+  hmoFields.classList.toggle("visible",show);
+  householdsW.classList.toggle("visible",show);
+});
+
+tenancyStatus.addEventListener("change",()=>{
+  const occ=tenancyStatus.value==="occupied";
+  tenancyDateW.classList.toggle("visible",occ);
+  writtenAgrW.classList.toggle("visible",occ);
+});
+
+jointOwnership.addEventListener("change",()=>{
+  jointWarn.classList.toggle("visible",jointOwnership.value==="yes");
+});
+
+// ============================================================
+// FORM SUBMISSION
+// ============================================================
+document.getElementById("complianceForm").addEventListener("submit",function(e){
+  e.preventDefault();
+
+  // Gather data
+  const data={
+    propertyType:propertyType.value,
+    occupants:document.getElementById("occupants").value,
+    households:document.getElementById("households").value,
+    epcRating:document.getElementById("epcRating").value,
+    tenancyStatus:tenancyStatus.value,
+    tenancyStartDate:document.getElementById("tenancyStartDate").value,
+    writtenAgreement:document.getElementById("writtenAgreement").value,
+    rentalIncome:document.getElementById("rentalIncome").value,
+    selfEmploymentIncome:document.getElementById("selfEmploymentIncome").value,
+    jointOwnership:jointOwnership.value,
+    email:document.getElementById("email").value
+  };
+
+  // Basic validation
+  if(!data.propertyType||!data.epcRating||!data.tenancyStatus||!data.rentalIncome||!data.selfEmploymentIncome||!data.jointOwnership||!data.email){
+    alert("Please complete all required fields.");
+    return;
+  }
+
+  generateReport(data);
+});
+
+// ============================================================
+// REPORT GENERATION
+// ============================================================
+function generateReport(data){
+  const results={red:[],amber:[],green:[]};
+  const catStatus={};
+
+  // Evaluate each regulation
+  REGULATIONS.forEach(reg=>{
+    const light=reg.evaluate(data);
+    if(!light)return;
+    results[light].push(reg);
+    // Track worst status per category
+    const prev=catStatus[reg.category];
+    if(!prev||light==="red"||(light==="amber"&&prev==="green"))catStatus[reg.category]=light;
+  });
+
+  // ---- Dashboard ----
+  const dashEl=document.getElementById("dashboard");
+  dashEl.innerHTML="";
+
+  // Council licensing — always amber
+  catStatus["council_licensing"]="amber";
+
+  const catOrder=["renters_rights_act","mtd","epc","gas_safety","eicr","deposit_protection","right_to_rent","smoke_co_alarms","legionella","hmo","council_licensing"];
+  const catDisplayNames={...CAT_NAMES,council_licensing:"Council Licensing"};
+  const icons={red:"🔴",amber:"🟡",green:"🟢"};
+
+  catOrder.forEach(cat=>{
+    const status=catStatus[cat];
+    if(!status&&cat!=="council_licensing")return;
+    const s=status||"green";
+    const div=document.createElement("div");
+    div.className=`dash-item dash-${s}`;
+    div.innerHTML=`<div class="icon">${icons[s]}</div>${catDisplayNames[cat]}`;
+    dashEl.appendChild(div);
+  });
+
+  // ---- Cards ----
+  const redEl=document.getElementById("redSection");
+  const amberEl=document.getElementById("amberSection");
+  const greenEl=document.getElementById("greenSection");
+  redEl.innerHTML="";amberEl.innerHTML="";greenEl.innerHTML="";
+
+  if(results.red.length){
+    redEl.innerHTML=`<h3 class="section-title red">🔴 Immediate Action Required (${results.red.length})</h3>`;
+    results.red.forEach(r=>redEl.appendChild(makeCard(r,"red")));
+  }
+  if(results.amber.length){
+    amberEl.innerHTML=`<h3 class="section-title amber">🟡 Review and Prepare (${results.amber.length})</h3>`;
+    results.amber.forEach(r=>amberEl.appendChild(makeCard(r,"amber")));
+  }
+
+  // Report date
+  const now=new Date();
+  document.getElementById("reportDate").textContent=`Generated ${now.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})} at ${now.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}`;
+
+  // Show report, scroll
+  document.getElementById("report").style.display="block";
+  document.getElementById("report").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function makeCard(reg,light){
+  const card=document.createElement("div");
+  card.className=`card ${light}`;
+
+  let deadlineHtml="";
+  if(reg.deadline){
+    const days=daysUntil(reg.deadline);
+    if(days!==null&&days>=0){
+      const cdClass=light==="red"?"countdown":"countdown amber-cd";
+      deadlineHtml=`<span class="${cdClass}">${days} day${days!==1?"s":""} remaining</span>`;
+    }else if(days!==null&&days<0){
+      deadlineHtml=`<span class="countdown">Already in effect</span>`;
+    }
+  }
+
+  card.innerHTML=`
+    <h3>${reg.headline}</h3>
+    <p class="explanation">${reg.explanation}</p>
+    <div class="meta">
+      <p><strong>Deadline:</strong> <span class="deadline-value">${reg.deadlineLabel}</span> ${deadlineHtml}</p>
+      <p><strong>Penalty:</strong> <span class="penalty-value">${reg.penalty}</span></p>
+      <p><strong>What to do:</strong> <span class="action-value">${reg.action}</span></p>
+    </div>
+    <div class="source">
+      <a href="${reg.sourceUrl}" target="_blank" rel="noopener">${reg.sourceName}</a>
+      <span class="verified">Verified ${reg.lastVerified}</span>
+    </div>
+  `;
+  return card;
+}
+</script>
+</body>
+</html>
