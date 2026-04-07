@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ComplianceCrib — Free Landlord Compliance Report</title>
+<title>ComplianceCrib - Free Landlord Compliance Report</title>
 <meta name="description" content="Know exactly what you owe as a landlord before the fines hit. Free personalised compliance report covering the Renters' Rights Act, Making Tax Digital, EPC, and more.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&display=swap" rel="stylesheet">
@@ -245,7 +245,7 @@ footer a{color:var(--navy-light);text-decoration:none}
 
 <header>
   <h1>ComplianceCrib</h1>
-  <p>Know exactly what you owe as a landlord — before the fines hit.</p>
+  <p>Know exactly what you owe as a landlord, before the fines hit.</p>
   <span class="badge">Free compliance report · 2 minutes</span>
 </header>
 
@@ -315,7 +315,7 @@ footer a{color:var(--navy-light);text-decoration:none}
         <select id="writtenAgreement">
           <option value="">Select...</option>
           <option value="yes">Yes</option>
-          <option value="no">No — it's a verbal agreement</option>
+          <option value="no">No, it's a verbal agreement</option>
           <option value="unsure">Not sure</option>
         </select>
       </div>
@@ -348,8 +348,8 @@ footer a{color:var(--navy-light);text-decoration:none}
         <label for="jointOwnership">Do you own this property jointly?</label>
         <select id="jointOwnership" required>
           <option value="">Select...</option>
-          <option value="no">No — sole owner</option>
-          <option value="yes">Yes — jointly owned</option>
+          <option value="no">No, sole owner</option>
+          <option value="yes">Yes, jointly owned</option>
         </select>
       </div>
 
@@ -379,10 +379,10 @@ footer a{color:var(--navy-light);text-decoration:none}
 
     <div class="dashboard" id="dashboard"></div>
 
-    <!-- Council Notice — always shown -->
+    <!-- Council Notice -->
     <div class="council-notice">
       <h3>⚠️ Council Licensing: Not Yet Assessed</h3>
-      <p>This report covers all <strong>national</strong> obligations. Council-specific requirements — selective licensing, additional HMO licensing — vary by local authority and are not yet included. Selective licensing is one of the most common ways landlords are fined. <strong>Check with your local council</strong> or visit <a href="https://www.gov.uk/find-licences/house-in-multiple-occupation-licence" target="_blank" style="color:var(--amber)">gov.uk</a> to confirm whether a licence is required for your property.</p>
+      <p>This report covers all <strong>national</strong> obligations. Council-specific requirements (selective licensing, additional HMO licensing) vary by local authority and are not yet included. Selective licensing is one of the most common ways landlords are fined. <strong>Check with your local council</strong> or visit <a href="https://www.gov.uk/find-licences/house-in-multiple-occupation-licence" target="_blank" style="color:var(--amber)">gov.uk</a> to confirm whether a licence is required for your property.</p>
     </div>
 
     <div id="redSection"></div>
@@ -413,7 +413,7 @@ const REGULATIONS = [
     penalty:"Civil penalty of up to £7,000 for initial breach. Up to £40,000 for repeated breaches.",
     action:"Download the Information Sheet from GOV.UK and send it to every current tenant with a written AST, either by email or post. Keep proof of delivery.",
     sourceUrl:"https://www.gov.uk/government/publications/the-renters-rights-act-information-sheet-2026",
-    sourceName:"GOV.UK — Renters' Rights Act Information Sheet 2026",
+    sourceName:"GOV.UK: Renters' Rights Act Information Sheet 2026",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus!=="occupied")return null;
@@ -432,7 +432,7 @@ const REGULATIONS = [
     penalty:"Civil penalty of up to £7,000 for initial breach. Up to £40,000 for repeated breaches.",
     action:"Create a written statement of the tenancy terms including all required information specified in GOV.UK guidance. Provide it to your tenant by 31 May 2026.",
     sourceUrl:"https://www.gov.uk/guidance/renting-out-your-property-guidance-for-landlords-and-letting-agents/tenancy-agreements-written-information-for-your-tenant",
-    sourceName:"GOV.UK — Written information for your tenant",
+    sourceName:"GOV.UK: Written information for your tenant",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus!=="occupied")return null;
@@ -449,7 +449,7 @@ const REGULATIONS = [
     penalty:"Loss of the right to use Ground 4A for that tenancy.",
     action:"Write to your student tenants before 31 May 2026 informing them you may use Ground 4A.",
     sourceUrl:"https://www.gov.uk/guidance/renting-out-your-property-guidance-for-landlords-and-letting-agents/ending-a-tenancy",
-    sourceName:"GOV.UK — Ending a tenancy guidance",
+    sourceName:"GOV.UK: Ending a tenancy guidance",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.propertyType!=="hmo")return null;
@@ -466,7 +466,7 @@ const REGULATIONS = [
     penalty:"Any Section 21 notice served on or after 1 May 2026 is invalid. Illegal eviction can result in penalties up to £40,000 or criminal prosecution.",
     action:"Do not serve any new Section 21 notices. Use the reformed Section 8 grounds with correct notice periods and new prescribed forms.",
     sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
-    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    sourceName:"GOV.UK: Guide to the Renters' Rights Act",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -481,7 +481,7 @@ const REGULATIONS = [
     penalty:"Using incorrect grounds or notice periods invalidates the notice. Misuse can result in penalties up to £40,000 and rent repayment orders.",
     action:"Familiarise yourself with the reformed grounds for possession. Use new prescribed forms available on GOV.UK from 1 May 2026.",
     sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
-    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    sourceName:"GOV.UK: Guide to the Renters' Rights Act",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -496,7 +496,7 @@ const REGULATIONS = [
     penalty:"Rent increase is unenforceable if not served via the correct process.",
     action:"Use Form 4A for all rent increases. Give at least 2 months' notice. Do not rely on existing rent review clauses.",
     sourceUrl:"https://www.gov.uk/guidance/renting-out-your-property-guidance-for-landlords-and-letting-agents/renters-rights-act-an-overview-for-landlords",
-    sourceName:"GOV.UK — Guidance for landlords",
+    sourceName:"GOV.UK: Guidance for landlords",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -511,7 +511,7 @@ const REGULATIONS = [
     penalty:"Blanket pet bans are void. Unreasonable refusal can be challenged through the Ombudsman or court.",
     action:"Remove blanket 'no pets' clauses from tenancy templates. Prepare to assess pet requests individually within 4 weeks.",
     sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
-    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    sourceName:"GOV.UK: Guide to the Renters' Rights Act",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -526,7 +526,7 @@ const REGULATIONS = [
     penalty:"Council fines of up to £5,000 for advance rent breaches. Up to £7,000 for rental bidding breaches.",
     action:"Include a specific asking price on all advertisements. Do not accept offers above the advertised rent. Only request up to one month's rent in advance after signing.",
     sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
-    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    sourceName:"GOV.UK: Guide to the Renters' Rights Act",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="occupied"&&!d.newTenancyPlanned)return null;
@@ -541,7 +541,7 @@ const REGULATIONS = [
     penalty:"Civil penalty up to £7,000. Up to £40,000 for repeated breaches. Loss of possession grounds.",
     action:"Monitor GOV.UK for the registration launch date. Prepare your property details for prompt registration.",
     sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
-    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    sourceName:"GOV.UK: Guide to the Renters' Rights Act",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -556,7 +556,7 @@ const REGULATIONS = [
     penalty:"Civil penalty up to £7,000. Up to £40,000 for continuing breaches.",
     action:"Monitor GOV.UK for the ombudsman service launch date.",
     sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
-    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    sourceName:"GOV.UK: Guide to the Renters' Rights Act",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -571,7 +571,7 @@ const REGULATIONS = [
     penalty:"Improvement notices, civil penalties up to £7,000, criminal prosecution, and rent repayment orders.",
     action:"Proactively address any damp, mould, or hazard issues in your properties now.",
     sourceUrl:"https://www.gov.uk/government/publications/guide-to-the-renters-rights-act/guide-to-the-renters-rights-act",
-    sourceName:"GOV.UK — Guide to the Renters' Rights Act",
+    sourceName:"GOV.UK: Guide to the Renters' Rights Act",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -587,7 +587,7 @@ const REGULATIONS = [
     penalty:"Penalty points: 1 point per late quarterly update. £200 fine at 4 points. 12-month grace period on late submission penalties.",
     action:"Calculate your qualifying income (gross rental + self-employment). If over £50,000, sign up for MTD-compatible software immediately.",
     sourceUrl:"https://www.gov.uk/government/collections/making-tax-digital-for-income-tax-for-businesses-step-by-step",
-    sourceName:"GOV.UK — Making Tax Digital step by step",
+    sourceName:"GOV.UK: Making Tax Digital step by step",
     lastVerified:"2026-04-07",
     evaluate(d){
       const c=combinedIncome(d);
@@ -604,7 +604,7 @@ const REGULATIONS = [
     penalty:"Same penalty points system as Phase 1.",
     action:"If your qualifying income is between £30,000 and £50,000, begin preparing now. Research MTD-compatible software.",
     sourceUrl:"https://www.gov.uk/government/collections/making-tax-digital-for-income-tax-for-businesses-step-by-step",
-    sourceName:"GOV.UK — Making Tax Digital step by step",
+    sourceName:"GOV.UK: Making Tax Digital step by step",
     lastVerified:"2026-04-07",
     evaluate(d){
       const c=combinedIncome(d);
@@ -620,7 +620,7 @@ const REGULATIONS = [
     penalty:"Same penalty points system as Phase 1.",
     action:"If your qualifying income is between £20,000 and £30,000, begin preparing. Monitor HMRC guidance.",
     sourceUrl:"https://www.gov.uk/government/collections/making-tax-digital-for-income-tax-for-businesses-step-by-step",
-    sourceName:"GOV.UK — Making Tax Digital step by step",
+    sourceName:"GOV.UK: Making Tax Digital step by step",
     lastVerified:"2026-04-07",
     evaluate(d){
       const c=combinedIncome(d);
@@ -632,11 +632,11 @@ const REGULATIONS = [
     id:"mtd_joint_warning",category:"mtd",
     headline:"Joint owners: MTD thresholds are based on your personal share of rental income",
     explanation:"If you own jointly, the MTD qualifying income threshold is based on your individual share of gross rental income, not the total. Ensure the income bracket you selected reflects your share.",
-    deadline:null,deadlineLabel:"Ongoing — applies to all MTD phases",
+    deadline:null,deadlineLabel:"Ongoing (applies to all MTD phases)",
     penalty:"Incorrect calculation could mean failing to register for MTD when required.",
     action:"Calculate your personal share of gross rental income based on your ownership percentage.",
     sourceUrl:"https://www.gov.uk/government/collections/making-tax-digital-for-income-tax-for-businesses-step-by-step",
-    sourceName:"GOV.UK — Making Tax Digital step by step",
+    sourceName:"GOV.UK: Making Tax Digital step by step",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.jointOwnership!=="yes")return null;
@@ -652,7 +652,7 @@ const REGULATIONS = [
     penalty:"Fine of up to £5,000 per property.",
     action:"Check your EPC rating. If F or G, you cannot legally let until you improve to at least E or register a valid exemption.",
     sourceUrl:"https://www.gov.uk/guidance/domestic-private-rented-property-minimum-energy-efficiency-standard-landlord-guidance",
-    sourceName:"GOV.UK — Minimum energy efficiency standard guidance",
+    sourceName:"GOV.UK: Minimum energy efficiency standard guidance",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.epcRating==="F"||d.epcRating==="G")return"red";
@@ -668,7 +668,7 @@ const REGULATIONS = [
     penalty:"Fines of up to £30,000 per property (proposed).",
     action:"If your EPC is D or E, start planning energy efficiency improvements now. Get quotes for insulation and heating upgrades.",
     sourceUrl:"https://www.gov.uk/guidance/domestic-private-rented-property-minimum-energy-efficiency-standard-landlord-guidance",
-    sourceName:"GOV.UK — Minimum energy efficiency standard guidance",
+    sourceName:"GOV.UK: Minimum energy efficiency standard guidance",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.epcRating==="D"||d.epcRating==="E")return"amber";
@@ -680,11 +680,11 @@ const REGULATIONS = [
     id:"gas_safety",category:"gas_safety",
     headline:"You must have a valid Gas Safety Certificate, renewed annually",
     explanation:"All gas appliances, fittings and flues in rented properties must be checked annually by a Gas Safe registered engineer. A copy must be provided to tenants within 28 days of the check.",
-    deadline:null,deadlineLabel:"Annual — check your certificate expiry date",
+    deadline:null,deadlineLabel:"Annual. Check your certificate expiry date",
     penalty:"Fine of up to £6,000 and/or up to 6 months' imprisonment.",
     action:"Check your Gas Safety Certificate expiry date. Book your annual check before it expires. If your property has no gas supply, this obligation does not apply.",
     sourceUrl:"https://www.hse.gov.uk/gas/landlords/index.htm",
-    sourceName:"HSE — Gas safety for landlords",
+    sourceName:"HSE: Gas safety for landlords",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -695,11 +695,11 @@ const REGULATIONS = [
     id:"eicr",category:"eicr",
     headline:"You must have a valid EICR, renewed every 5 years",
     explanation:"Electrical installations must be inspected and tested every 5 years. The EICR must be provided to tenants within 28 days. Any urgent remedial work must be completed within 28 days.",
-    deadline:null,deadlineLabel:"Every 5 years — check your EICR expiry date",
+    deadline:null,deadlineLabel:"Every 5 years. Check your EICR expiry date",
     penalty:"Civil penalty of up to £30,000 per breach.",
     action:"Check your EICR expiry date. If you don't have one, arrange an inspection immediately.",
     sourceUrl:"https://www.legislation.gov.uk/uksi/2020/312/part/2",
-    sourceName:"Legislation.gov.uk — Electrical Safety Standards 2020",
+    sourceName:"Legislation.gov.uk: Electrical Safety Standards 2020",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -714,7 +714,7 @@ const REGULATIONS = [
     penalty:"Court can order 1 to 3 times the deposit amount. Cannot use possession grounds until deposit is protected or returned.",
     action:"Verify your tenant's deposit is registered in an approved scheme and that you provided all prescribed information.",
     sourceUrl:"https://www.gov.uk/tenancy-deposit-protection",
-    sourceName:"GOV.UK — Tenancy deposit protection",
+    sourceName:"GOV.UK: Tenancy deposit protection",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus!=="occupied")return null;
@@ -729,7 +729,7 @@ const REGULATIONS = [
     penalty:"Civil penalty of up to £3,000 per tenant. Repeat offences: criminal prosecution with up to 5 years' imprisonment.",
     action:"Conduct right to rent checks for all adult occupiers before the tenancy starts. Keep copies. Set reminders for follow-up checks.",
     sourceUrl:"https://www.gov.uk/check-tenant-right-to-rent-documents",
-    sourceName:"GOV.UK — Check a tenant's right to rent",
+    sourceName:"GOV.UK: Check a tenant's right to rent",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -744,7 +744,7 @@ const REGULATIONS = [
     penalty:"Fine of up to £5,000 for failing to comply with a remedial notice.",
     action:"Check all smoke and CO alarms are installed correctly and working. Test at the start of each tenancy.",
     sourceUrl:"https://www.gov.uk/government/publications/smoke-and-carbon-monoxide-alarms-explanatory-booklet-for-landlords",
-    sourceName:"GOV.UK — Smoke and CO Alarm Regulations guidance",
+    sourceName:"GOV.UK: Smoke and CO Alarm Regulations guidance",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -755,11 +755,11 @@ const REGULATIONS = [
     id:"legionella",category:"legionella",
     headline:"You must conduct a Legionella risk assessment before letting",
     explanation:"You must assess the risk of legionella in your water systems. For most domestic properties, a simple self-assessment is sufficient. Key measures: hot water at 60°C, flush systems before letting, clean showerheads regularly.",
-    deadline:null,deadlineLabel:"Before letting — review periodically",
+    deadline:null,deadlineLabel:"Before letting. Review periodically",
     penalty:"Prosecution under Health and Safety at Work Act if a tenant contracts Legionnaires' disease due to negligence.",
     action:"Conduct a simple legionella risk assessment. Flush the water system before new tenancies. Review periodically.",
     sourceUrl:"https://www.hse.gov.uk/legionnaires/legionella-landlords-responsibilities.htm",
-    sourceName:"HSE — Legionella and landlords' responsibilities",
+    sourceName:"HSE: Legionella and landlords' responsibilities",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.tenancyStatus==="vacant")return null;
@@ -770,11 +770,11 @@ const REGULATIONS = [
     id:"hmo_licence",category:"hmo",
     headline:"You must have an HMO licence if your property is let to 5+ people from 2+ households",
     explanation:"A mandatory HMO licence is required for properties rented to 5 or more people from more than 1 household sharing facilities. Smaller HMOs may also require a licence depending on council schemes. Valid for up to 5 years.",
-    deadline:null,deadlineLabel:"Ongoing — licence must be in place before letting as an HMO",
+    deadline:null,deadlineLabel:"Ongoing. Licence must be in place before letting as an HMO",
     penalty:"Unlimited fine. Tenants can apply for rent repayment orders of up to 24 months' rent.",
     action:"Determine if your property meets the HMO definition. Contact your local council to check if a licence is required.",
     sourceUrl:"https://www.gov.uk/find-licences/house-in-multiple-occupation-licence",
-    sourceName:"GOV.UK — HMO licence",
+    sourceName:"GOV.UK: HMO licence",
     lastVerified:"2026-04-07",
     evaluate(d){
       if(d.propertyType==="hmo")return"red";
@@ -955,7 +955,7 @@ function generateReport(data){
   const dashEl=document.getElementById("dashboard");
   dashEl.innerHTML="";
 
-  // Council licensing — always amber
+  // Council licensing - always amber
   catStatus["council_licensing"]="amber";
 
   const catOrder=["renters_rights_act","mtd","epc","gas_safety","eicr","deposit_protection","right_to_rent","smoke_co_alarms","legionella","hmo","council_licensing"];
