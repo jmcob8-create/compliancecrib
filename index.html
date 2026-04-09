@@ -390,6 +390,19 @@ footer a{color:var(--navy-light);text-decoration:none}
       <p>This report covers all <strong>national</strong> obligations. Council-specific requirements (selective licensing, additional HMO licensing) vary by local authority and are not yet included. Selective licensing is one of the most common ways landlords are fined. <strong>Check with your local council</strong> or visit <a href="https://www.gov.uk/find-licences/house-in-multiple-occupation-licence" target="_blank" style="color:var(--amber)">gov.uk</a> to confirm whether a licence is required for your property.</p>
     </div>
 
+    <div id="monetizationSection" style="display:none; margin-bottom:24px;">
+      <div class="card" style="border-left-color:var(--navy); background:var(--sky); text-align:center; padding:28px 24px;">
+        <h3 style="font-family:'Fraunces',serif; font-size:1.3rem; color:var(--navy); margin-bottom:10px;">Need the Written Statement template?</h3>
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:16px; line-height:1.5;">
+          If your tenancy is based on a verbal agreement, you must provide a written statement of terms by <strong>31 May 2026</strong> or face a fine of up to <strong>\u00A37,000</strong>. Our ready-to-use template covers every required field.
+        </p>
+        <a id="stripeLink" href="#" class="submit-btn" style="text-decoration:none; display:inline-block; width:auto; padding:12px 36px; font-size:0.95rem;">
+          Download Template - \u00A37.99
+        </a>
+        <p style="font-size:0.72rem; color:var(--text-secondary); margin-top:10px;">Instant Word document download. Based on current 2026 legislation.</p>
+      </div>
+    </div>
+
     <div id="redSection"></div>
     <div id="amberSection"></div>
     <div id="greenSection"></div>
@@ -991,6 +1004,11 @@ function generateReport(data){
   if(results.amber.length){
     amberEl.innerHTML=`<h3 class="section-title amber">🟡 Review and Prepare (${results.amber.length})</h3>`;
     results.amber.forEach(r=>amberEl.appendChild(makeCard(r,"amber")));
+  }
+
+  // Show monetisation section if there are issues to resolve
+  if(results.red.length>0||results.amber.length>0){
+    document.getElementById("monetizationSection").style.display="block";
   }
 
   // Report date
