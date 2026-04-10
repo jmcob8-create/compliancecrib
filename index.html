@@ -245,6 +245,7 @@ footer a{color:var(--navy-light);text-decoration:none}
   .card{padding:16px 18px}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -392,14 +393,29 @@ footer a{color:var(--navy-light);text-decoration:none}
 
     <div id="monetizationSection" style="display:none; margin-bottom:24px;">
       <div class="card" style="border-left-color:var(--navy); background:var(--sky); text-align:center; padding:28px 24px;">
-        <h3 style="font-family:'Fraunces',serif; font-size:1.3rem; color:var(--navy); margin-bottom:10px;">Need the Written Statement template?</h3>
+        <h3 style="font-family:'Fraunces',serif; font-size:1.3rem; color:var(--navy); margin-bottom:10px;">Get your 2026 Compliance Templates</h3>
         <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:16px; line-height:1.5;">
-          If your tenancy is based on a verbal agreement, you must provide a written statement of terms by <strong>31 May 2026</strong> or face a fine of up to <strong>\u00A37,000</strong>. Our ready-to-use template covers every required field.
+          Your report flagged items that need action. Our template pack includes a ready-to-use Written Statement of Tenancy Terms, a rent increase checklist for the new Section 13 rules, and a compliance record sheet to track your deadlines. All based on current 2026 legislation.
         </p>
-        <a id="stripeLink" href="#" class="submit-btn" style="text-decoration:none; display:inline-block; width:auto; padding:12px 36px; font-size:0.95rem;">
-          Download Template - \u00A37.99
+        <label style="display:flex; align-items:flex-start; gap:8px; text-align:left; margin:0 auto 12px; max-width:480px; cursor:pointer;">
+          <input type="checkbox" id="liabilityConsent" style="margin-top:3px; flex-shrink:0; width:18px; height:18px; cursor:pointer;">
+          <span style="font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">I understand these templates are starting-point documents based on published government requirements, not legal advice. ComplianceCrib is not a law firm. I will seek independent legal advice if I am unsure about my specific situation.</span>
+        </label>
+        <p style="font-size:0.72rem; color:var(--text-secondary); margin-bottom:14px; max-width:480px; margin-left:auto; margin-right:auto; text-align:left; line-height:1.5;">By clicking "Get the Template Pack", you request immediate access to the digital content and acknowledge that you lose your 14-day right to cancel this contract once the download has started.</p>
+        <a id="stripeLink" href="https://buy.stripe.com/00w8wP9Icayebmw6gPgIo00" onclick="return handlePurchase()" class="submit-btn" style="text-decoration:none; display:inline-block; width:auto; padding:12px 36px; font-size:0.95rem; opacity:0.5; pointer-events:none;">
+          Get the Template Pack - £9.99
         </a>
-        <p style="font-size:0.72rem; color:var(--text-secondary); margin-top:10px;">Instant Word document download. Based on current 2026 legislation.</p>
+        <p style="font-size:0.72rem; color:var(--text-secondary); margin-top:10px;">Instant download. Word and PDF formats. Based on current 2026 legislation. Solicitor review recommended.</p>
+      </div>
+    </div>
+
+    <div id="pdfDownloadSection" style="display:none; margin-bottom:24px;">
+      <div class="card" style="border-left-color:var(--green); text-align:center; padding:24px;">
+        <h3 style="font-size:1rem; color:var(--navy); margin-bottom:8px;">Save your compliance report</h3>
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:14px;">Download a PDF of your full report to keep on file, share with your letting agent, or send to your mortgage lender.</p>
+        <button onclick="downloadPDF()" class="submit-btn" style="width:auto; padding:12px 36px; font-size:0.95rem; background:var(--green);">
+          Download Report as PDF - Free
+        </button>
       </div>
     </div>
 
@@ -408,7 +424,7 @@ footer a{color:var(--navy-light);text-decoration:none}
     <div id="greenSection"></div>
 
     <div class="disclaimer">
-      <strong>Important:</strong> ComplianceCrib provides regulatory information based on publicly available government publications. It does not constitute legal advice. For situation-specific legal guidance, consult a qualified solicitor. All obligations are sourced from official government publications with verification dates shown on each item.
+      <strong>Important:</strong> ComplianceCrib provides regulatory information based on publicly available government publications. It is not a law firm and does not provide legal advice. All obligations shown are sourced from official government publications with verification dates on each item. While we make every effort to ensure accuracy, regulations change and individual circumstances vary. We strongly recommend consulting a qualified solicitor for situation-specific legal guidance. ComplianceCrib accepts no liability for any loss, fine, or legal action arising from use of this tool or its outputs.
     </div>
   </div>
 
@@ -1011,6 +1027,9 @@ function generateReport(data){
     document.getElementById("monetizationSection").style.display="block";
   }
 
+  // Always show PDF download
+  document.getElementById("pdfDownloadSection").style.display="block";
+
   // Report date
   const now=new Date();
   document.getElementById("reportDate").textContent=`Generated ${now.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})} at ${now.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}`;
@@ -1049,6 +1068,85 @@ function makeCard(reg,light){
     </div>
   `;
   return card;
+}
+
+// ============================================================
+// PDF GENERATION
+// ============================================================
+function downloadPDF(){
+  const reportEl=document.getElementById("report");
+
+  // Hide the buttons/CTAs before generating PDF
+  const monetEl=document.getElementById("monetizationSection");
+  const pdfEl=document.getElementById("pdfDownloadSection");
+  const prevMonet=monetEl.style.display;
+  const prevPdf=pdfEl.style.display;
+  monetEl.style.display="none";
+  pdfEl.style.display="none";
+
+  const opt={
+    margin:[10,10,10,10],
+    filename:"ComplianceCrib-Report.pdf",
+    image:{type:"jpeg",quality:0.95},
+    html2canvas:{scale:2,useCORS:true,scrollY:0},
+    jsPDF:{unit:"mm",format:"a4",orientation:"portrait"},
+    pagebreak:{mode:["avoid-all","css","legacy"]}
+  };
+
+  html2pdf().set(opt).from(reportEl).save().then(()=>{
+    // Restore buttons after PDF is generated
+    monetEl.style.display=prevMonet;
+    pdfEl.style.display=prevPdf;
+  });
+}
+
+// ============================================================
+// PURCHASE CHECKBOX AND HANDLER
+// ============================================================
+document.addEventListener("change",function(e){
+  if(e.target.id==="liabilityConsent"){
+    const btn=document.getElementById("stripeLink");
+    if(e.target.checked){
+      btn.style.opacity="1";
+      btn.style.pointerEvents="auto";
+    }else{
+      btn.style.opacity="0.5";
+      btn.style.pointerEvents="none";
+    }
+  }
+});
+
+function handlePurchase(){
+  if(!document.getElementById("liabilityConsent").checked){
+    alert("Please confirm you understand the terms before purchasing.");
+    return false;
+  }
+  // Log consent to Supabase
+  logPurchaseConsent();
+  return true;
+}
+
+async function logPurchaseConsent(){
+  try{
+    const emailField=document.getElementById("email");
+    const email=emailField?emailField.value:"unknown";
+    await fetch(SUPABASE_URL+"/rest/v1/purchase_consents",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "apikey":SUPABASE_KEY,
+        "Authorization":"Bearer "+SUPABASE_KEY,
+        "Prefer":"return=minimal"
+      },
+      body:JSON.stringify({
+        email:email,
+        consent_text:"I understand these templates are starting-point documents based on published government requirements, not legal advice. ComplianceCrib is not a law firm. I will seek independent legal advice if I am unsure about my specific situation.",
+        consented_at:new Date().toISOString()
+      })
+    });
+  }catch(err){
+    console.error("Consent log error:",err);
+  }
 }
 </script>
 </body>
