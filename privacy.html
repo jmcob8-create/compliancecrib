@@ -54,13 +54,13 @@ footer a{color:var(--navy-light);text-decoration:none}
 <body>
 
 <header>
-  <a href="/">ComplianceCrib</a>
+  <a href="/"><img src="/logo-white.png" alt="ComplianceCrib" style="height:80px"></a>
 </header>
 
 <div class="container">
 
 <h1>Privacy Policy</h1>
-<p class="last-updated">Last updated: 7 April 2026</p>
+<p class="last-updated">Last updated: 10 April 2026</p>
 
 <p>ComplianceCrib ("we", "us") is committed to protecting your personal data. This policy explains what data we collect, why we collect it, how we store it, and your rights.</p>
 
@@ -71,6 +71,7 @@ footer a{color:var(--navy-light);text-decoration:none}
 <p>When you use our compliance report tool, we collect the following information:</p>
 <ul>
   <li>Email address</li>
+  <li>Property postcode (used to identify your local council)</li>
   <li>Property type (e.g. flat, terraced, HMO)</li>
   <li>EPC rating</li>
   <li>Tenancy status and start date</li>
@@ -80,7 +81,7 @@ footer a{color:var(--navy-light);text-decoration:none}
   <li>Whether the property is jointly owned</li>
   <li>Number of occupants and households (for HMO properties)</li>
 </ul>
-<p>We do not collect your name, address, exact income, bank details, or any payment information through the compliance report form.</p>
+<p>We do not collect your name, full address, exact income, bank details, or any payment information through the compliance report form. Payments are processed by Stripe and we never see your card details.</p>
 
 <h2>Why we collect it</h2>
 <p>We use your data for these purposes only:</p>
@@ -109,13 +110,15 @@ footer a{color:var(--navy-light);text-decoration:none}
 <p>To exercise any of these rights, email <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a>. We will respond within 30 days.</p>
 
 <h2>Cookies</h2>
-<p>ComplianceCrib does not use tracking cookies. We do not use Google Analytics or any third-party tracking tools. We use Vercel's built-in analytics which collects anonymous, aggregated page view data only, with no personal identifiers.</p>
+<p>ComplianceCrib does not use tracking cookies. We do not use Google Analytics or any third-party tracking tools.</p>
 
 <h2>Third-party services</h2>
 <p>We use the following third-party services to operate ComplianceCrib:</p>
 <ul>
   <li><strong>Supabase</strong> (database hosting, EU servers)</li>
-  <li><strong>Netlify</strong> (website hosting)</li>
+  <li><strong>Cloudflare Pages</strong> (website hosting)</li>
+  <li><strong>Stripe</strong> (payment processing for template purchases; we never see your card details)</li>
+  <li><strong>Postcodes.io</strong> (postcode lookup to identify your local council; your postcode is sent to their API but no personal data is shared)</li>
   <li><strong>Resend</strong> (email delivery, when we send you deadline reminders)</li>
 </ul>
 <p>Each of these services has its own privacy policy. We have selected providers that comply with UK and EU data protection standards.</p>
