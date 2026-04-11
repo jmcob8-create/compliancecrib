@@ -265,6 +265,12 @@ footer a{color:var(--navy-light);text-decoration:none}
     <form id="complianceForm" novalidate>
 
       <div class="field">
+        <label for="postcode">Property postcode</label>
+        <p class="hint">Used to identify your local council for licensing requirements.</p>
+        <input type="text" id="postcode" placeholder="e.g. LS1 4AP" required style="text-transform:uppercase" maxlength="8">
+      </div>
+
+      <div class="field">
         <label for="propertyType">Property type</label>
         <select id="propertyType" required>
           <option value="">Select...</option>
@@ -386,9 +392,19 @@ footer a{color:var(--navy-light);text-decoration:none}
     <div class="dashboard" id="dashboard"></div>
 
     <!-- Council Notice -->
-    <div class="council-notice">
+    <div class="council-notice" id="councilNotice">
       <h3>⚠️ Council Licensing: Not Yet Assessed</h3>
-      <p>This report covers all <strong>national</strong> obligations. Council-specific requirements (selective licensing, additional HMO licensing) vary by local authority and are not yet included. Selective licensing is one of the most common ways landlords are fined. <strong>Check with your local council</strong> or visit <a href="https://www.gov.uk/find-licences/house-in-multiple-occupation-licence" target="_blank" style="color:var(--amber)">gov.uk</a> to confirm whether a licence is required for your property.</p>
+      <p id="councilNoticeText">This report covers all <strong>national</strong> obligations. Council-specific requirements (selective licensing, additional HMO licensing) vary by local authority and are not yet included. Selective licensing is one of the most common ways landlords are fined. <strong>Check with your local council</strong> or visit <a href="https://www.gov.uk/find-licences/house-in-multiple-occupation-licence" target="_blank" style="color:var(--amber)">gov.uk</a> to confirm whether a licence is required for your property.</p>
+    </div>
+
+    <div id="pdfDownloadSection" style="display:none; margin-bottom:24px;">
+      <div class="card" style="border-left-color:var(--green); text-align:center; padding:24px;">
+        <h3 style="font-size:1rem; color:var(--navy); margin-bottom:8px;">Save your compliance report</h3>
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:14px;">Download a PDF to keep on file, share with your letting agent, or send to your mortgage lender.</p>
+        <button onclick="downloadPDF()" class="submit-btn" style="width:auto; padding:12px 36px; font-size:0.95rem; background:var(--green);">
+          Download Report as PDF - Free
+        </button>
+      </div>
     </div>
 
     <div id="monetizationSection" style="display:none; margin-bottom:24px;">
@@ -409,22 +425,12 @@ footer a{color:var(--navy-light);text-decoration:none}
       </div>
     </div>
 
-    <div id="pdfDownloadSection" style="display:none; margin-bottom:24px;">
-      <div class="card" style="border-left-color:var(--green); text-align:center; padding:24px;">
-        <h3 style="font-size:1rem; color:var(--navy); margin-bottom:8px;">Save your compliance report</h3>
-        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:14px;">Download a PDF of your full report to keep on file, share with your letting agent, or send to your mortgage lender.</p>
-        <button onclick="downloadPDF()" class="submit-btn" style="width:auto; padding:12px 36px; font-size:0.95rem; background:var(--green);">
-          Download Report as PDF - Free
-        </button>
-      </div>
-    </div>
-
     <div id="redSection"></div>
     <div id="amberSection"></div>
     <div id="greenSection"></div>
 
     <div class="disclaimer">
-      <strong>Important:</strong> ComplianceCrib provides regulatory information based on publicly available government publications. It is not a law firm and does not provide legal advice. All obligations shown are sourced from official government publications with verification dates on each item. While we make every effort to ensure accuracy, regulations change and individual circumstances vary. We strongly recommend consulting a qualified solicitor for situation-specific legal guidance. ComplianceCrib accepts no liability for any loss, fine, or legal action arising from use of this tool or its outputs.
+      <strong>Important:</strong> ComplianceCrib provides regulatory information, not legal advice. We are not a law firm. Consult a qualified solicitor for situation-specific guidance. We accept no liability for any loss arising from use of this tool. <a href="/privacy.html" style="color:var(--navy-light)">Full terms</a>.
     </div>
   </div>
 
@@ -918,6 +924,7 @@ async function saveSubmission(data){
       },
       body:JSON.stringify({
         email:data.email,
+        postcode:data.postcode||null,
         property_type:data.propertyType,
         epc_rating:data.epcRating,
         tenancy_status:data.tenancyStatus,
@@ -937,6 +944,38 @@ async function saveSubmission(data){
 }
 
 // ============================================================
+// COUNCIL LOOKUP (Postcodes.io - free, no auth required)
+// ============================================================
+async function lookupCouncil(postcode){
+  try{
+    const resp=await fetch("https://api.postcodes.io/postcodes/"+encodeURIComponent(postcode));
+    if(!resp.ok){
+      updateCouncilNotice(null);
+      return;
+    }
+    const json=await resp.json();
+    if(json.result&&json.result.admin_district){
+      updateCouncilNotice(json.result.admin_district);
+    }else{
+      updateCouncilNotice(null);
+    }
+  }catch(err){
+    console.error("Postcode lookup error:",err);
+    updateCouncilNotice(null);
+  }
+}
+
+function updateCouncilNotice(councilName){
+  const textEl=document.getElementById("councilNoticeText");
+  if(councilName){
+    const searchUrl="https://www.google.com/search?q="+encodeURIComponent(councilName+" selective licensing scheme 2026");
+    textEl.innerHTML='Your property is in <strong>'+councilName+'</strong>. This report covers national obligations only. Council-specific requirements (selective licensing, additional HMO licensing) vary and are not assessed here. Selective licensing is one of the most common ways landlords are fined. <a href="'+searchUrl+'" target="_blank" rel="noopener" style="color:var(--amber);font-weight:600;">Check '+councilName+'\'s licensing requirements here</a>.';
+  }else{
+    textEl.innerHTML='We could not identify your council from the postcode provided. Council-specific requirements (selective licensing, additional HMO licensing) vary by local authority. Selective licensing is one of the most common ways landlords are fined. <strong>Check with your local council</strong> or visit <a href="https://www.gov.uk/find-licences/house-in-multiple-occupation-licence" target="_blank" style="color:var(--amber)">gov.uk</a> to confirm whether a licence is required.';
+  }
+}
+
+// ============================================================
 // FORM SUBMISSION
 // ============================================================
 document.getElementById("complianceForm").addEventListener("submit",function(e){
@@ -944,6 +983,7 @@ document.getElementById("complianceForm").addEventListener("submit",function(e){
 
   // Gather data
   const data={
+    postcode:document.getElementById("postcode").value.trim().toUpperCase(),
     propertyType:propertyType.value,
     occupants:document.getElementById("occupants").value,
     households:document.getElementById("households").value,
@@ -958,13 +998,16 @@ document.getElementById("complianceForm").addEventListener("submit",function(e){
   };
 
   // Basic validation
-  if(!data.propertyType||!data.epcRating||!data.tenancyStatus||!data.rentalIncome||!data.selfEmploymentIncome||!data.jointOwnership||!data.email){
+  if(!data.postcode||!data.propertyType||!data.epcRating||!data.tenancyStatus||!data.rentalIncome||!data.selfEmploymentIncome||!data.jointOwnership||!data.email){
     alert("Please complete all required fields.");
     return;
   }
 
   // Save to Supabase (async, don't block report generation)
   saveSubmission(data);
+
+  // Look up council from postcode and update notice
+  lookupCouncil(data.postcode);
 
   generateReport(data);
 });
