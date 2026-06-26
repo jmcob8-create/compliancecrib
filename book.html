@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ComplianceCrib — get started</title>
+<meta name="description" content="Send us your security questionnaire, or book a quick call first. Completed in 3 working days, and you only pay if you're happy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0E2233;--ink2:#1B3A52;--bg:#F5F8FA;--surface:#FFFFFF;--line:#E1E8EE;--muted:#566875;--accent:#0B6E7A;--accent-d:#085863;--yes:#1A7F4B;--shadow:0 1px 2px rgba(14,34,51,.04),0 12px 32px rgba(14,34,51,.08)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Inter",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  .narrow{max-width:760px}
+  h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.14;letter-spacing:-.02em;font-weight:700}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  a{color:inherit}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;text-decoration:none;transition:background .15s,transform .15s;border:none;cursor:pointer}
+  .btn:hover{background:var(--accent-d);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{background:#fff;border-color:#cdd8e0}
+  header{position:sticky;top:0;z-index:30;backdrop-filter:saturate(140%) blur(10px);background:rgba(245,248,250,.82);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:11px;height:11px;border-radius:3px;background:var(--accent);box-shadow:0 0 0 4px rgba(11,110,122,.14)}
+  .hero{padding:60px 0 18px}
+  .hero h1{font-size:38px;margin:14px 0 16px}
+  .hero p{color:var(--muted);font-size:17px;max-width:38em}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:34px 0 10px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:26px;display:flex;flex-direction:column}
+  .card .tag{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+  .card h3{font-size:20px;margin-bottom:8px}
+  .card p{font-size:14.5px;color:var(--muted);margin-bottom:18px;flex:1}
+  .card .btn{align-self:flex-start}
+  .card ul{list-style:none;margin:0 0 18px;font-size:13.5px;color:var(--ink2)}
+  .card li{padding-left:18px;position:relative;margin-bottom:5px}
+  .card li::before{content:"\2192";position:absolute;left:0;color:var(--accent)}
+  .next{background:var(--ink);color:#cdd9e2;border-radius:16px;padding:30px;margin:30px 0}
+  .next h2{color:#fff;font-size:22px;margin-bottom:18px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .step .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:#7fd0c6;border:1px solid rgba(127,208,198,.3);width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:8px;margin-bottom:10px}
+  .step p{font-size:13px;color:#aebecb}
+  .guarantee{display:flex;gap:12px;align-items:flex-start;background:#eaf1f2;border:1px solid var(--line);border-left:3px solid var(--yes);border-radius:12px;padding:20px;margin-bottom:60px}
+  .guarantee b{color:var(--ink)}
+  .guarantee p{font-size:14.5px;color:var(--ink2)}
+  footer{border-top:1px solid var(--line);background:var(--ink);color:#cdd9e2;padding:40px 0 34px}
+  .foot-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:#8499a8}
+  .foot-row a{color:#cdd9e2;text-decoration:none}.foot-row a:hover{color:#fff}
+  @media (max-width:780px){.hero h1{font-size:30px}.cards{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
+    <a href="mailto:hello@compliancecrib.co.uk?subject=Security%20questionnaire" class="btn ghost">Email us</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap narrow">
+    <p class="eyebrow">Get started</p>
+    <h1>Send it over, or grab 15 minutes first.</h1>
+    <p>However you'd rather start. Either send your questionnaire straight across, or book a quick call if you'd like to talk it through. No commitment either way, and you only pay if you're happy with the result.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cards">
+
+      <div class="card">
+        <div class="tag">Option 1 &middot; fastest</div>
+        <h3>Send your questionnaire</h3>
+        <p>Email it across and we'll take it from there. Helpful to include:</p>
+        <ul>
+          <li>The questionnaire (file or portal link)</li>
+          <li>Your deadline</li>
+          <li>Any security docs you have to hand</li>
+        </ul>
+        <a href="mailto:hello@compliancecrib.co.uk?subject=Security%20questionnaire%20%E2%80%94%20get%20started&body=Hi%20James%2C%0A%0AHere's%20our%20questionnaire.%20Our%20deadline%20is%3A%0A%0A" class="btn">Email it over</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">Option 2 &middot; talk first</div>
+        <h3>Book a 15-minute call</h3>
+        <p>Prefer to ask a few questions before sending anything? Grab a slot and we'll talk it through, no pressure.</p>
+        <!-- REPLACE the href below with your booking link (e.g. your free Cal.com or Calendly link). Until then this points nowhere. -->
+        <a href="[YOUR_BOOKING_LINK]" class="btn ghost">Book a call</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <div class="next">
+      <h2>What happens next</h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><p>You send the questionnaire and your security docs.</p></div>
+        <div class="step"><div class="n">2</div><p>We complete it from your documents and flag anything that needs your sign-off.</p></div>
+        <div class="step"><div class="n">3</div><p>Submission-ready draft back to you in 3 working days.</p></div>
+        <div class="step"><div class="n">4</div><p>You review, approve, and only then pay the £349.</p></div>
+      </div>
+    </div>
+    <div class="guarantee">
+      <div>&#10003;</div>
+      <p><b>Pay only if you're happy.</b> If the result isn't useful to you, it costs you nothing. Your documents are kept confidential, never used to train any AI model, and deleted after delivery.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <span>&copy; <span id="yr"></span> ComplianceCrib</span>
+      <span><a href="index.html">Home</a> &nbsp;&middot;&nbsp; <a href="download.html">Worked example</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
