@@ -10,121 +10,151 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0E2233; --ink2:#1B3A52; --bg:#F5F8FA; --surface:#FFFFFF;
-    --line:#E1E8EE; --muted:#566875; --accent:#0B6E7A; --accent-d:#085863;
-    --yes:#1A7F4B; --partial:#B45309; --confirm:#64748B;
-    --shadow:0 1px 2px rgba(14,34,51,.04),0 12px 32px rgba(14,34,51,.08);
+    --ink:#0B1B2B;--ink2:#13314A;--bg:#F5F8FA;--surface:#FFFFFF;--line:#E1E8EE;
+    --muted:#566875;--accent:#13A6A6;--accent2:#0B6E7A;--accent-d:#0a5d68;
+    --yes:#1A9F5B;--partial:#D97706;--confirm:#64748B;
+    --shadow:0 1px 2px rgba(11,27,43,.05),0 18px 44px rgba(11,27,43,.10);
+    --glow:0 0 0 1px rgba(255,255,255,.04),0 30px 80px -20px rgba(19,166,166,.35);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:"Inter",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-  h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.12;letter-spacing:-.02em;font-weight:700;color:var(--ink)}
-  .mono{font-family:"IBM Plex Mono",monospace;letter-spacing:.02em}
-  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  body{font-family:"Inter",system-ui,sans-serif;color:#10283c;background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.1;letter-spacing:-.025em;font-weight:700}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
   a{color:inherit}
-  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;text-decoration:none;transition:background .15s,transform .15s;border:none;cursor:pointer}
-  .btn:hover{background:var(--accent-d);transform:translateY(-1px)}
-  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-  .btn.ghost:hover{background:#fff;border-color:#cdd8e0}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent2);color:#fff;font-weight:600;font-size:15px;padding:13px 24px;border-radius:11px;text-decoration:none;transition:transform .18s cubic-bezier(.2,.7,.2,1),box-shadow .18s,background .18s;border:none;cursor:pointer}
+  .btn:hover{background:var(--accent-d);transform:translateY(-2px);box-shadow:0 12px 26px -8px rgba(11,110,122,.5)}
+  .btn.lg{padding:15px 28px;font-size:16px}
+  .btn.ghost{background:transparent;color:#10283c;border:1px solid var(--line)}
+  .btn.ghost:hover{background:#fff;border-color:#cbd6de;box-shadow:0 8px 20px -10px rgba(11,27,43,.25)}
+  .btn.ondark{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px)}
+  .btn.ondark:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3)}
 
   /* header */
-  header{position:sticky;top:0;z-index:30;backdrop-filter:saturate(140%) blur(10px);background:rgba(245,248,250,.82);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:9px}
-  .brand .dot{width:11px;height:11px;border-radius:3px;background:var(--accent);display:inline-block;box-shadow:0 0 0 4px rgba(11,110,122,.14)}
+  header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(150%) blur(12px);background:rgba(11,27,43,.72);border-bottom:1px solid rgba(255,255,255,.07);transition:background .3s}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .brand .dot{width:12px;height:12px;border-radius:4px;background:var(--accent);box-shadow:0 0 14px 1px rgba(19,166,166,.7);animation:breathe 3.5s ease-in-out infinite}
+  @keyframes breathe{0%,100%{box-shadow:0 0 10px 0 rgba(19,166,166,.55)}50%{box-shadow:0 0 18px 3px rgba(19,166,166,.85)}}
 
-  /* hero */
-  .hero{padding:78px 0 64px}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
-  .hero h1{font-size:46px;margin:16px 0 18px}
-  .hero p.lead{font-size:18px;color:var(--muted);max-width:30em;margin-bottom:26px}
-  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .reassure{margin-top:18px;font-size:13.5px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
-  .reassure span{display:flex;align-items:center;gap:7px}
-  .tick{color:var(--yes);font-weight:700}
+  /* hero (dark) */
+  .hero{position:relative;background:radial-gradient(120% 120% at 78% 0%,#143049 0%,#0B1B2B 55%);color:#eaf1f6;padding:84px 0 96px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(120% 90% at 70% 10%,#000 0%,transparent 70%);animation:drift 24s linear infinite}
+  @keyframes drift{to{background-position:46px 46px}}
+  .hero::after{content:"";position:absolute;width:560px;height:560px;right:-120px;top:-160px;background:radial-gradient(circle,rgba(19,166,166,.30),transparent 62%);filter:blur(20px);animation:pulseGlow 7s ease-in-out infinite}
+  @keyframes pulseGlow{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:center}
+  .hero h1{font-size:50px;color:#fff;margin:18px 0 20px}
+  .hero h1 .hl{color:var(--accent);position:relative;white-space:nowrap}
+  .hero p.lead{font-size:18.5px;color:#a9bccb;max-width:30em;margin-bottom:30px}
+  .hero-cta{display:flex;gap:13px;flex-wrap:wrap;align-items:center}
+  .reassure{margin-top:22px;font-size:13.5px;color:#9fb2c2;display:flex;gap:20px;flex-wrap:wrap}
+  .reassure span{display:flex;align-items:center;gap:8px}
+  .tick{color:var(--yes);font-weight:800}
+  .fade{opacity:0;transform:translateY(16px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+  .d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.32s}
+  @keyframes rise{to{opacity:1;transform:none}}
 
-  /* hero card = a completed questionnaire */
-  .qcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
-  .qcard-top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line);background:#fbfcfd}
-  .qcard-top .label{font-size:12px;color:var(--muted)}
-  .qcard-top .label b{color:var(--ink)}
-  .stamp{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;color:var(--yes);border:1px solid rgba(26,127,75,.3);background:rgba(26,127,75,.08);padding:4px 9px;border-radius:999px}
+  /* self-completing questionnaire card */
+  .qsim{position:relative;background:#fff;border-radius:18px;box-shadow:var(--glow);overflow:hidden;border:1px solid rgba(255,255,255,.6)}
+  .qsim-top{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--line);background:#fbfcfd}
+  .qsim-top .lbl{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
+  .qsim-top .lbl b{color:var(--ink)}
+  .qstamp{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:700;color:#fff;background:var(--yes);padding:5px 11px;border-radius:999px;opacity:0;transform:scale(.7);transition:opacity .4s,transform .4s cubic-bezier(.2,1.5,.4,1)}
+  .qstamp.show{opacity:1;transform:scale(1)}
+  .qprog{height:3px;background:var(--line);position:relative;overflow:hidden}
+  .qbar{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width .6s cubic-bezier(.3,.7,.3,1)}
+  .qbody{position:relative}
+  .qscan{position:absolute;left:0;right:0;height:42px;top:0;background:linear-gradient(180deg,transparent,rgba(19,166,166,.10),transparent);opacity:0;pointer-events:none}
+  .qbody.running .qscan{opacity:1;animation:scan 3.4s ease-in-out 1}
+  @keyframes scan{0%{top:-42px}100%{top:100%}}
   .qrow{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:13px 18px;border-bottom:1px solid var(--line)}
   .qrow:last-child{border-bottom:none}
-  .qrow .qid{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);display:block;margin-bottom:2px}
-  .qrow .qtext{font-size:13.5px;color:var(--ink2)}
-  .chip{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap}
-  .chip.yes{color:var(--yes);background:rgba(26,127,75,.10)}
-  .chip.partial{color:var(--partial);background:rgba(180,83,9,.10)}
-  .chip.confirm{color:var(--confirm);background:rgba(100,116,139,.12)}
-  .qcard-foot{padding:12px 18px;font-size:12.5px;color:var(--muted);background:#fbfcfd;display:flex;align-items:center;gap:8px}
+  .qrow .qid{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--accent2);font-weight:600;display:block;margin-bottom:3px}
+  .qrow .qtxt{font-size:13px;color:var(--ink2);line-height:1.4}
+  .qcell{min-width:74px;display:flex;justify-content:flex-end}
+  .qscanbars{display:flex;gap:3px;align-items:center}
+  .qscanbars i{display:block;width:5px;height:5px;border-radius:50%;background:#cbd6de;animation:blink 1s ease-in-out infinite}
+  .qscanbars i:nth-child(2){animation-delay:.2s}.qscanbars i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+  .qchip{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:700;padding:5px 11px;border-radius:999px;opacity:0;transform:translateY(4px) scale(.9);transition:opacity .35s,transform .35s cubic-bezier(.2,1.4,.4,1)}
+  .qrow.done .qscanbars{display:none}
+  .qrow.done .qchip{opacity:1;transform:none}
+  .qchip.yes{color:var(--yes);background:rgba(26,159,91,.12)}
+  .qchip.partial{color:var(--partial);background:rgba(217,119,6,.12)}
+  .qchip.confirm{color:#fff;background:var(--confirm)}
 
-  /* generic section */
-  .section{padding:64px 0;border-top:1px solid var(--line)}
-  .section h2{font-size:30px;margin:12px 0 14px}
+  /* stats */
+  .stats{background:#0B1B2B;border-top:1px solid rgba(255,255,255,.06);padding:30px 0}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .stat{text-align:center;color:#cfdce7}
+  .stat .num{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:34px;color:#fff;letter-spacing:-.02em}
+  .stat .num .u{color:var(--accent);font-size:20px}
+  .stat .cap{font-size:12.5px;color:#8ea3b4;margin-top:3px;font-family:"IBM Plex Mono",monospace;letter-spacing:.03em}
+
+  /* generic sections */
+  .section{padding:74px 0;border-top:1px solid var(--line)}
+  .section h2{font-size:33px;margin:12px 0 14px}
   .section .intro{color:var(--muted);max-width:42em;font-size:16.5px}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
 
-  /* problem band */
-  .band{background:var(--ink);color:#dce6ec}
-  .band h2{color:#fff;font-size:27px;margin-bottom:14px}
-  .band p{color:#aebecb;max-width:44em;font-size:17px}
-  .band .accent{color:#fff;font-weight:600}
-
-  /* steps */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px}
-  .step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
-  .step .num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--accent);border:1px solid var(--line);width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:9px;margin-bottom:16px}
-  .step h3{font-size:17px;margin-bottom:8px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:38px}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;transition:transform .22s ease,box-shadow .22s ease,border-color .22s}
+  .step:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#d3dee6}
+  .step .num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--accent2),var(--accent));width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:10px;margin-bottom:17px;box-shadow:0 6px 14px -4px rgba(11,110,122,.5)}
+  .step h3{font-size:17.5px;margin-bottom:8px}
   .step p{font-size:14.5px;color:var(--muted)}
 
-  /* trust features */
-  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px}
-  .feat{padding:4px}
-  .feat .k{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:16px;margin-bottom:7px;display:flex;align-items:center;gap:9px}
-  .feat .k::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent)}
+  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:38px}
+  .feat{padding:22px;border-radius:14px;transition:background .22s}
+  .feat:hover{background:#fff;box-shadow:var(--shadow)}
+  .feat .k{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:16.5px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+  .feat .k::before{content:"";width:9px;height:9px;border-radius:3px;background:linear-gradient(135deg,var(--accent2),var(--accent))}
   .feat p{font-size:14.5px;color:var(--muted)}
 
-  /* pricing */
-  .price-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:38px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;margin-top:30px}
-  .price-card .amt{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:44px;letter-spacing:-.02em}
+  .band{background:radial-gradient(120% 140% at 20% 0%,#143049,#0B1B2B);color:#dce8f0;border:none}
+  .band h2{color:#fff;font-size:30px;margin-bottom:14px;max-width:18em}
+  .band p{color:#a9bccb;max-width:44em;font-size:17.5px}
+  .band .accent{color:var(--accent);font-weight:600}
+
+  .price-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:40px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;margin-top:32px;overflow:hidden}
+  .price-card::before{content:"";position:absolute;width:280px;height:280px;right:-80px;bottom:-120px;background:radial-gradient(circle,rgba(19,166,166,.12),transparent 65%)}
+  .price-card .amt{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:46px;letter-spacing:-.02em;position:relative}
   .price-card .amt small{font-size:16px;color:var(--muted);font-weight:500}
-  .price-card .gtee{font-size:15px;color:var(--ink2);max-width:30em;margin-top:6px}
+  .price-card .gtee{font-size:15px;color:var(--ink2);max-width:30em;margin-top:8px;position:relative}
   .price-card .gtee b{color:var(--yes)}
 
-  /* example band */
-  .example{background:linear-gradient(180deg,#fff, #f1f6f8);border:1px solid var(--line);border-radius:18px;padding:34px;text-align:center;margin-top:8px}
-  .example h2{font-size:24px;margin-bottom:10px}
-  .example p{color:var(--muted);margin-bottom:20px}
+  .example{position:relative;background:linear-gradient(135deg,#0B1B2B,#143049);border-radius:20px;padding:44px;text-align:center;overflow:hidden;color:#fff}
+  .example::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(80% 80% at 50% 0%,#000,transparent 75%)}
+  .example>*{position:relative}
+  .example h2{font-size:27px;margin-bottom:10px;color:#fff}
+  .example p{color:#a9bccb;margin-bottom:22px}
+  .minichips{display:flex;gap:8px;justify-content:center;margin-bottom:18px}
+  .minichips span{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:999px}
+  .mc-y{color:#fff;background:rgba(26,159,91,.25);border:1px solid rgba(26,159,91,.5)}
+  .mc-p{color:#fff;background:rgba(217,119,6,.25);border:1px solid rgba(217,119,6,.5)}
+  .mc-c{color:#fff;background:rgba(100,116,139,.3);border:1px solid rgba(100,116,139,.55)}
 
-  /* data */
-  .data{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;margin-top:24px}
-  .data .lock{font-size:20px;line-height:1}
+  .data{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;margin-top:26px}
+  .data .lock{font-size:22px;line-height:1}
   .data p{font-size:14.5px;color:var(--muted)}
   .data b{color:var(--ink)}
 
-  /* footer cta */
-  footer{border-top:1px solid var(--line);background:var(--ink);color:#cdd9e2;padding:60px 0 40px}
-  footer h2{color:#fff;font-size:30px;margin-bottom:14px}
-  footer p.sub{color:#9fb2c0;margin-bottom:26px;max-width:34em}
-  .foot-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#8499a8}
-  .foot-row a{color:#cdd9e2;text-decoration:none}
-  .foot-row a:hover{color:#fff}
+  footer{border-top:1px solid rgba(255,255,255,.07);background:#0B1B2B;color:#cdd9e2;padding:66px 0 42px}
+  footer h2{color:#fff;font-size:32px;margin-bottom:14px}
+  footer p.sub{color:#9fb2c0;margin-bottom:28px;max-width:34em}
+  .foot-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:52px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#8499a8}
+  .foot-row a{color:#cdd9e2;text-decoration:none}.foot-row a:hover{color:#fff}
 
-  .fade{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
-  .fade.d1{animation-delay:.08s}.fade.d2{animation-delay:.16s}
-  @keyframes rise{to{opacity:1;transform:none}}
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){.fade{animation:none;opacity:1;transform:none}}
-
-  @media (max-width:860px){
-    .hero-grid{grid-template-columns:1fr;gap:38px}
-    .hero{padding:52px 0 48px}
-    .hero h1{font-size:36px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.fade,.reveal{opacity:1;transform:none}.qchip{opacity:1;transform:none}.qscanbars{display:none}.qstamp{opacity:1;transform:none}.qbar{width:100%!important}}
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}.hero{padding:54px 0 60px}.hero h1{font-size:37px}
+    .stats-grid{grid-template-columns:1fr 1fr;gap:26px}
     .steps,.feats{grid-template-columns:1fr}
     .price-card{grid-template-columns:1fr;text-align:left}
-    .section{padding:52px 0}
+    .section{padding:56px 0}
   }
 </style>
 </head>
@@ -132,7 +162,7 @@
 
 <header>
   <div class="wrap nav">
-    <a href="#" class="brand"><span class="dot"></span>ComplianceCrib</a>
+    <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
     <a href="book.html" class="btn">Get your next one done</a>
   </div>
 </header>
@@ -141,118 +171,116 @@
   <div class="wrap hero-grid">
     <div>
       <p class="eyebrow fade">Built for small MSPs</p>
-      <h1 class="fade d1">Client security questionnaires, completed in 3 working days.</h1>
+      <h1 class="fade d1">Client security questionnaires, completed in <span class="hl">3 working days.</span></h1>
       <p class="lead fade d1">SIG, CAIQ or a bespoke vendor form lands right before a contract is signed. We complete it for you, so the deal can close, without you losing a day to a spreadsheet.</p>
       <div class="hero-cta fade d2">
-        <a href="book.html" class="btn">Get your next one done</a>
-        <a href="#how" class="btn ghost">How it works</a>
+        <a href="book.html" class="btn lg">Get your next one done</a>
+        <a href="#how" class="btn lg ondark">See how it works</a>
       </div>
-      <div class="reassure fade d2">
+      <div class="reassure fade d3">
         <span><span class="tick">&#10003;</span> Pay only if you're happy</span>
         <span><span class="tick">&#10003;</span> You sign off every answer</span>
       </div>
     </div>
 
-    <div class="qcard fade d2" aria-hidden="true">
-      <div class="qcard-top">
-        <div class="label">CAIQ &middot; <b>completed from your documents</b></div>
-        <div class="stamp">3 DAYS</div>
+    <div class="fade d2">
+      <div class="qsim" id="qsim">
+        <div class="qsim-top">
+          <div class="lbl">CAIQ &middot; <b id="qstate">completing&hellip;</b></div>
+          <div class="qstamp" id="qstamp">3 DAYS &#10003;</div>
+        </div>
+        <div class="qprog"><div class="qbar" id="qbar"></div></div>
+        <div class="qbody" id="qbody">
+          <div class="qscan"></div>
+          <div class="qrow" data-chip="yes">
+            <div><span class="qid">A&amp;A-01.1</span><span class="qtxt">Audit &amp; assurance policies established and maintained</span></div>
+            <div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip yes">YES</span></div>
+          </div>
+          <div class="qrow" data-chip="yes">
+            <div><span class="qid">A&amp;A-02.1</span><span class="qtxt">Independent assessments at least annually</span></div>
+            <div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip yes">YES</span></div>
+          </div>
+          <div class="qrow" data-chip="partial">
+            <div><span class="qid">A&amp;A-03.1</span><span class="qtxt">Assessments triggered by significant change</span></div>
+            <div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip partial">PARTIAL</span></div>
+          </div>
+          <div class="qrow" data-chip="yes">
+            <div><span class="qid">IAM-01.1</span><span class="qtxt">Identity &amp; access management policy enforced</span></div>
+            <div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip yes">YES</span></div>
+          </div>
+          <div class="qrow" data-chip="confirm">
+            <div><span class="qid">DSP-05.1</span><span class="qtxt">Data classification applied to all data</span></div>
+            <div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip confirm">CONFIRM</span></div>
+          </div>
+        </div>
       </div>
-      <div class="qrow">
-        <div><span class="qid">A&amp;A-01.1</span><span class="qtext">Audit &amp; assurance policies established and maintained</span></div>
-        <span class="chip yes">YES</span>
-      </div>
-      <div class="qrow">
-        <div><span class="qid">A&amp;A-02.1</span><span class="qtext">Independent assessments at least annually</span></div>
-        <span class="chip yes">YES</span>
-      </div>
-      <div class="qrow">
-        <div><span class="qid">A&amp;A-03.1</span><span class="qtext">Assessments triggered by significant change</span></div>
-        <span class="chip partial">PARTIAL</span>
-      </div>
-      <div class="qrow">
-        <div><span class="qid">A&amp;A-04.1</span><span class="qtext">Compliance verified vs legal &amp; contractual</span></div>
-        <span class="chip confirm">CONFIRM</span>
-      </div>
-      <div class="qcard-foot">Every answer sourced to your docs. Gaps flagged, never bluffed.</div>
     </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap stats-grid" id="stats">
+    <div class="stat"><div class="num"><span data-count="3">0</span></div><div class="cap">WORKING-DAY TURNAROUND</div></div>
+    <div class="stat"><div class="num"><span class="u">~</span><span data-count="15">0</span> <span style="font-size:20px">min</span></div><div class="cap">OF YOUR TIME</div></div>
+    <div class="stat"><div class="num"><span class="u">&pound;</span><span data-count="349">0</span></div><div class="cap">FLAT, PER QUESTIONNAIRE</div></div>
+    <div class="stat"><div class="num"><span class="u">&#10003;</span></div><div class="cap">PAY ONLY IF HAPPY</div></div>
   </div>
 </section>
 
 <section class="section band">
   <div class="wrap">
-    <h2>The last thing standing between you and a signed contract.</h2>
-    <p>A security questionnaire usually arrives once the client has all but said yes. It's <span class="accent">blocking your revenue</span>, and it can swallow 10 to 40 hours copying technical detail into someone else's form. We make it disappear.</p>
+    <h2 class="reveal">The last thing standing between you and a signed contract.</h2>
+    <p class="reveal">A security questionnaire usually arrives once the client has all but said yes. It's <span class="accent">blocking your revenue</span>, and it can swallow 10 to 40 hours copying technical detail into someone else's form. We make it disappear.</p>
   </div>
 </section>
 
 <section class="section" id="how">
   <div class="wrap">
-    <p class="eyebrow">How it works</p>
-    <h2>Three steps, about 15 minutes of your time.</h2>
+    <p class="eyebrow reveal">How it works</p>
+    <h2 class="reveal">Three steps, about 15 minutes of your time.</h2>
     <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
-        <h3>Send it over</h3>
-        <p>Forward the questionnaire and your existing security docs: ISO cert, policies, any prior answers.</p>
-      </div>
-      <div class="step">
-        <div class="num">2</div>
-        <h3>We complete it</h3>
-        <p>We answer only from what your documents support, and flag anything that needs your sign-off. We never invent a control you don't have.</p>
-      </div>
-      <div class="step">
-        <div class="num">3</div>
-        <h3>You sign off</h3>
-        <p>Review, confirm the flagged points, and submit. Submission-ready in 3 working days.</p>
-      </div>
+      <div class="step reveal"><div class="num">1</div><h3>Send it over</h3><p>Forward the questionnaire and your existing security docs: ISO cert, policies, any prior answers.</p></div>
+      <div class="step reveal"><div class="num">2</div><h3>We complete it</h3><p>We answer only from what your documents support, and flag anything that needs your sign-off. We never invent a control you don't have.</p></div>
+      <div class="step reveal"><div class="num">3</div><h3>You sign off</h3><p>Review, confirm the flagged points, and submit. Submission-ready in 3 working days.</p></div>
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <p class="eyebrow">Why MSPs use us</p>
-    <h2>Accurate where it counts, honest where it matters.</h2>
+    <p class="eyebrow reveal">Why MSPs use us</p>
+    <h2 class="reveal">Accurate where it counts, honest where it matters.</h2>
     <div class="feats">
-      <div class="feat">
-        <div class="k">Sourced, not bluffed</div>
-        <p>Every answer ties back to your own documents. Genuine gaps are flagged for you, because a confident wrong answer is what fails a security review.</p>
-      </div>
-      <div class="feat">
-        <div class="k">Built for small MSPs</div>
-        <p>Not enterprise software repriced down. A single flat fee for the job in front of you, no platform to learn or subscribe to.</p>
-      </div>
-      <div class="feat">
-        <div class="k">You stay in control</div>
-        <p>It comes back as a draft you own and sign off. Your name goes on it, so the final call is always yours.</p>
-      </div>
+      <div class="feat reveal"><div class="k">Sourced, not bluffed</div><p>Every answer ties back to your own documents. Genuine gaps are flagged for you, because a confident wrong answer is what fails a security review.</p></div>
+      <div class="feat reveal"><div class="k">Built for small MSPs</div><p>Not enterprise software repriced down. A single flat fee for the job in front of you, no platform to learn or subscribe to.</p></div>
+      <div class="feat reveal"><div class="k">You stay in control</div><p>It comes back as a draft you own and sign off. Your name goes on it, so the final call is always yours.</p></div>
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <p class="eyebrow">Pricing</p>
-    <h2>One flat fee. No subscription.</h2>
-    <div class="price-card">
+    <p class="eyebrow reveal">Pricing</p>
+    <h2 class="reveal">One flat fee. No subscription.</h2>
+    <div class="price-card reveal">
       <div>
         <div class="amt">&pound;349 <small>per questionnaire</small></div>
         <p class="gtee">You only pay once it's submission-ready and you're happy. <b>If it's not useful, you pay nothing.</b></p>
       </div>
-      <a href="book.html" class="btn">Get your next one done</a>
+      <a href="book.html" class="btn lg">Get your next one done</a>
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <div class="example">
+    <div class="example reveal">
+      <div class="minichips"><span class="mc-y">YES</span><span class="mc-p">PARTIAL</span><span class="mc-c">CONFIRM</span></div>
       <h2>See exactly how it comes back.</h2>
       <p>A real worked example: a slice of a CAIQ, completed from a sample MSP's documents.</p>
-      <a href="download.html" class="btn ghost">See a worked example</a>
+      <a href="download.html" class="btn lg">See a worked example</a>
     </div>
-    <div class="data">
+    <div class="data reveal">
       <div class="lock">&#128274;</div>
       <p><b>Your data stays yours.</b> Documents are handled in a private account, never used to train any AI model, never shared, and deleted after delivery. Happy to sign an NDA first, or work from a redacted set.</p>
     </div>
@@ -261,23 +289,57 @@
 
 <footer>
   <div class="wrap">
-    <h2>Take your next questionnaire off your plate.</h2>
-    <p class="sub">Send it over, or just ask a question. No obligation, and you only pay if you're happy with the result.</p>
-    <a href="mailto:hello@compliancecrib.co.uk?subject=Security%20questionnaire" class="btn">Email us</a>
+    <h2 class="reveal">Take your next questionnaire off your plate.</h2>
+    <p class="sub reveal">Send it over, or just ask a question. No obligation, and you only pay if you're happy with the result.</p>
+    <a href="book.html" class="btn lg reveal">Get started</a>
     <div class="foot-row">
       <span>&copy; <span id="yr"></span> ComplianceCrib</span>
-      <span><a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
+      <span><a href="book.html">Get started</a> &nbsp;&middot;&nbsp; <a href="download.html">Worked example</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();
-(function(){
-  var sel=['.section h2','.steps .step','.feats .feat','.price-card','.example','.data','.band p','.band h2'];
-  var els=document.querySelectorAll(sel.join(','));
-  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion:reduce)').matches){return;}
-  els.forEach(function(el,i){el.classList.add('reveal');el.style.transitionDelay=((i%4)*70)+'ms';});
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
-  els.forEach(function(el){io.observe(el);});
-})();</script>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // scroll reveals
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=((i%3)*80)+'ms';io.observe(el);});
+
+  // self-completing questionnaire
+  (function(){
+    var sim=document.getElementById('qsim'),body=document.getElementById('qbody'),bar=document.getElementById('qbar');
+    var rows=[].slice.call(body.querySelectorAll('.qrow'));
+    var stamp=document.getElementById('qstamp'),state=document.getElementById('qstate');
+    function run(){
+      rows.forEach(function(r){r.classList.remove('done');});
+      bar.style.width='0';stamp.classList.remove('show');state.innerHTML='completing&hellip;';
+      body.classList.remove('running');void body.offsetWidth;body.classList.add('running');
+      rows.forEach(function(r,i){
+        setTimeout(function(){r.classList.add('done');bar.style.width=Math.round((i+1)/rows.length*100)+'%';},650+i*620);
+      });
+      setTimeout(function(){stamp.classList.add('show');state.innerHTML='completed from your documents';},650+rows.length*620+250);
+    }
+    if(reduce){rows.forEach(function(r){r.classList.add('done');});bar.style.width='100%';stamp.classList.add('show');state.innerHTML='completed from your documents';return;}
+    var once=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run();}});},{threshold:.5});
+    once.observe(sim);
+  })();
+
+  // count-up stats
+  (function(){
+    var grid=document.getElementById('stats');
+    function animate(){
+      grid.querySelectorAll('[data-count]').forEach(function(el){
+        var target=+el.getAttribute('data-count'),start=null,dur=1100;
+        function tick(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);el.textContent=Math.round(p*target).toLocaleString();if(p<1)requestAnimationFrame(tick);}
+        requestAnimationFrame(tick);
+      });
+    }
+    if(reduce){grid.querySelectorAll('[data-count]').forEach(function(el){el.textContent=el.getAttribute('data-count');});return;}
+    var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){animate();so.disconnect();}});},{threshold:.5});
+    so.observe(grid);
+  })();
+</script>
 </body>
 </html>
