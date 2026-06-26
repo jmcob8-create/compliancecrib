@@ -23,6 +23,9 @@
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
   .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
   .brand .dot{width:12px;height:12px;border-radius:4px;background:var(--accent);box-shadow:0 0 14px 1px rgba(19,166,166,.7)}
+  .nav-actions{display:flex;align-items:center;gap:22px}
+  .navlink{color:#aebecb;text-decoration:none;font-size:14px;font-weight:600;transition:color .15s}
+  .navlink:hover{color:#fff}
   .hero{padding:56px 0 12px}
   .hero h1{font-size:38px;margin:14px 0 14px}
   .hero p{color:var(--muted);font-size:17px;max-width:40em}
@@ -57,7 +60,10 @@
 <header>
   <div class="wrap nav">
     <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
-    <a href="index.html" class="btn" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)">Home</a>
+    <div class="nav-actions">
+      <a href="book.html" class="navlink">Contact</a>
+      <a href="index.html" class="btn" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)">Home</a>
+    </div>
   </div>
 </header>
 
@@ -76,8 +82,7 @@
       <h3>Tell us what you need</h3>
       <p class="sub">We'll reply the same day, usually within a couple of hours.</p>
 
-      <!-- SETUP: replace YOUR_FORM_ID below with your free Formspree form ID (formspree.io > new form > copy the endpoint). Until then the form shows a setup notice instead of sending. -->
-      <form id="leadform" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+      <form id="leadform" action="https://formspree.io/f/mdargwga" method="POST" novalidate>
         <label for="name">Your name</label>
         <input id="name" name="name" type="text" autocomplete="name" required>
         <label for="email">Work email</label>
@@ -120,7 +125,7 @@
   <div class="wrap">
     <div class="foot-row">
       <span>&copy; <span id="yr"></span> ComplianceCrib</span>
-      <span><a href="index.html">Home</a> &nbsp;&middot;&nbsp; <a href="download.html">Worked example</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
+      <span><a href="index.html">Home</a> &nbsp;&middot;&nbsp; <a href="book.html">Contact</a> &nbsp;&middot;&nbsp; <a href="download.html">Worked example</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>
@@ -130,7 +135,6 @@
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(!f.name.value||!f.email.value){alert('Please add your name and email.');return;}
-    if(f.action.indexOf('YOUR_FORM_ID')>-1){alert('Setup needed: paste your Formspree form ID into the form action, then this will send.');return;}
     var btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending\u2026';
     fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
       .then(function(r){

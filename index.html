@@ -37,6 +37,9 @@
   .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
   .brand .dot{width:12px;height:12px;border-radius:4px;background:var(--accent);box-shadow:0 0 14px 1px rgba(19,166,166,.7);animation:breathe 3.5s ease-in-out infinite}
   @keyframes breathe{0%,100%{box-shadow:0 0 10px 0 rgba(19,166,166,.55)}50%{box-shadow:0 0 18px 3px rgba(19,166,166,.85)}}
+  .nav-actions{display:flex;align-items:center;gap:22px}
+  .navlink{color:#aebecb;text-decoration:none;font-size:14px;font-weight:600;transition:color .15s}
+  .navlink:hover{color:#fff}
 
   /* hero (dark) */
   .hero{position:relative;background:radial-gradient(120% 120% at 78% 0%,#143049 0%,#0B1B2B 55%);color:#eaf1f6;padding:84px 0 96px;overflow:hidden}
@@ -142,6 +145,17 @@
   .data p{font-size:14.5px;color:var(--muted)}
   .data b{color:var(--ink)}
 
+  /* FAQ */
+  .faq{margin-top:36px;display:grid;gap:14px}
+  .faq-item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:2px 24px;transition:box-shadow .22s ease,border-color .22s ease}
+  .faq-item[open]{box-shadow:var(--shadow);border-color:#d3dee6}
+  .faq-item summary{list-style:none;cursor:pointer;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:16.5px;color:var(--ink);padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{content:"+";font-family:"IBM Plex Mono",monospace;font-size:21px;font-weight:600;color:var(--accent2);line-height:1;flex:0 0 auto}
+  .faq-item[open] summary::after{content:"\2212"}
+  .faq-a{padding:0 0 20px;margin-top:-2px;color:var(--muted);font-size:14.5px;max-width:56em}
+  .faq-a b{color:var(--ink2)}
+
   footer{border-top:1px solid rgba(255,255,255,.07);background:#0B1B2B;color:#cdd9e2;padding:66px 0 42px}
   footer h2{color:#fff;font-size:32px;margin-bottom:14px}
   footer p.sub{color:#9fb2c0;margin-bottom:28px;max-width:34em}
@@ -163,7 +177,10 @@
 <header>
   <div class="wrap nav">
     <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
-    <a href="book.html" class="btn">Get your next one done</a>
+    <div class="nav-actions">
+      <a href="book.html" class="navlink">Contact</a>
+      <a href="book.html" class="btn">Get your next one done</a>
+    </div>
   </div>
 </header>
 
@@ -287,6 +304,35 @@
   </div>
 </section>
 
+<section class="section" id="faq">
+  <div class="wrap">
+    <p class="eyebrow reveal">FAQ</p>
+    <h2 class="reveal">Questions, answered.</h2>
+    <div class="faq">
+      <details class="faq-item reveal">
+        <summary>Can't I just use ChatGPT or the free tools?</summary>
+        <div class="faq-a"><p>You can, and for a single easy question it might be fine. The problem is a full questionnaire: a general tool will happily invent a control you don't actually have, and a <b>confident wrong answer</b> is exactly what fails a security review and stalls the deal. We answer only from your own documents, flag the genuine gaps instead of guessing, and hand you a draft that's ready to submit. You're paying to take a day off your plate and not have to check every line.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Is my data safe?</summary>
+        <div class="faq-a"><p>Yes. Your documents are handled in a private, access-controlled account, <b>never used to train any AI model</b>, never shared, and deleted once your questionnaire is delivered. We're happy to sign an NDA before you send anything, or to work from a redacted set. The full detail is on our <a href="privacy.html" style="color:var(--accent2)">privacy page</a>.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>What if I'm not happy?</summary>
+        <div class="faq-a"><p>Then you pay nothing. The £349 is due only once the questionnaire is submission-ready and you're happy with it. If the result isn't useful, it costs you nothing, no negotiation.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>How long does it take?</summary>
+        <div class="faq-a"><p>Three working days from when we have the questionnaire and your supporting documents. It takes about 15 minutes of your time: forward it over at the start, then review and sign off the flagged points at the end. If your deadline is tighter than three days, tell us and we'll say honestly whether we can hit it.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>What formats do you handle?</summary>
+        <div class="faq-a"><p>SIG (Standardized Information Gathering), CAIQ (Cloud Security Alliance), and bespoke vendor and client questionnaires, whether they arrive as a spreadsheet, a web portal, or a Word document. If you've been sent something in a format you're not sure about, send it over and we'll confirm we can complete it before you commit to anything.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <h2 class="reveal">Take your next questionnaire off your plate.</h2>
@@ -294,7 +340,7 @@
     <a href="book.html" class="btn lg reveal">Get started</a>
     <div class="foot-row">
       <span>&copy; <span id="yr"></span> ComplianceCrib</span>
-      <span><a href="book.html">Get started</a> &nbsp;&middot;&nbsp; <a href="download.html">Worked example</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
+      <span><a href="book.html">Get started</a> &nbsp;&middot;&nbsp; <a href="book.html">Contact</a> &nbsp;&middot;&nbsp; <a href="download.html">Worked example</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>
