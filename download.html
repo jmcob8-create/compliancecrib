@@ -9,11 +9,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#0E2233;--ink2:#1B3A52;--bg:#F5F8FA;--surface:#FFFFFF;--line:#E1E8EE;--muted:#566875;--accent:#0B6E7A;--accent-d:#085863;--yes:#1A7F4B;--partial:#B45309;--confirm:#64748B;--shadow:0 1px 2px rgba(14,34,51,.04),0 12px 32px rgba(14,34,51,.08)}
+  :root{--ink:#0E2233;--ink2:#1B3A52;--bg:#F5F8FA;--surface:#FFFFFF;--line:#E1E8EE;--muted:#566875;--accent:#0B6E7A;--accent-d:#085863;--yes:#1A7F4B;--partial:#B45309;--confirm:#64748B;--shadow:0 1px 2px rgba(14,34,51,.04),0 14px 36px rgba(14,34,51,.09)}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:"Inter",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-  .narrow{max-width:760px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  .narrow{max-width:820px}
   h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.14;letter-spacing:-.02em;font-weight:700}
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
   a{color:inherit}
@@ -25,31 +25,52 @@
   .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
   .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:9px}
   .brand .dot{width:11px;height:11px;border-radius:3px;background:var(--accent);box-shadow:0 0 0 4px rgba(11,110,122,.14)}
-  .hero{padding:64px 0 30px}
+  .hero{padding:60px 0 22px}
   .hero h1{font-size:38px;margin:14px 0 16px}
-  .hero p{color:var(--muted);font-size:17px;max-width:40em}
+  .hero p{color:var(--muted);font-size:17px;max-width:42em}
   .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-  .shows{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:30px 0 8px}
-  .show{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px}
-  .show .chip{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+  .legend{display:flex;gap:22px;flex-wrap:wrap;margin:14px 0 0;font-size:13px;color:var(--muted)}
+  .legend span{display:flex;align-items:center;gap:7px}
+  .dotc{width:9px;height:9px;border-radius:50%}
+  .dy{background:var(--yes)}.dp{background:var(--partial)}.dc{background:var(--confirm)}
+  /* the document */
+  .doc{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;margin:30px 0 8px}
+  .doc-top{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);background:#fbfcfd}
+  .doc-top .t{font-family:"Space Grotesk";font-weight:600;font-size:15px}
+  .doc-top .t small{display:block;font-family:"IBM Plex Mono";font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.04em;margin-top:2px}
+  .stamp{font-family:"IBM Plex Mono";font-size:11px;font-weight:600;color:var(--yes);border:1px solid rgba(26,127,75,.3);background:rgba(26,127,75,.08);padding:5px 11px;border-radius:999px}
+  .qrow{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;padding:16px 20px;border-bottom:1px solid var(--line);opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+  .qrow.in{opacity:1;transform:none}
+  .qrow:last-child{border-bottom:none}
+  .qid{font-family:"IBM Plex Mono";font-size:11px;color:var(--accent);font-weight:600;display:block;margin-bottom:4px}
+  .qtext{font-size:14.5px;color:var(--ink);font-weight:500;margin-bottom:6px}
+  .qbasis{font-size:12.5px;color:var(--muted);line-height:1.5}
+  .qbasis b{color:var(--ink2);font-weight:600}
+  .chip{font-family:"IBM Plex Mono";font-size:11px;font-weight:600;padding:5px 11px;border-radius:999px;white-space:nowrap}
   .chip.yes{color:var(--yes);background:rgba(26,127,75,.10)}
   .chip.partial{color:var(--partial);background:rgba(180,83,9,.10)}
-  .chip.confirm{color:var(--confirm);background:rgba(100,116,139,.12)}
+  .chip.confirm{color:#fff;background:var(--confirm);animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(100,116,139,.0)}50%{box-shadow:0 0 0 5px rgba(100,116,139,.14)}}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  .shows{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:34px 0}
+  .show{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px;transition:transform .18s ease,box-shadow .18s ease}
+  .show:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .show .chip{margin-bottom:10px;display:inline-block}
   .show p{font-size:14px;color:var(--muted)}
-  .viewer{margin:34px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);background:#fff}
-  .viewer iframe{width:100%;height:560px;border:0;display:block}
-  .section{padding:30px 0 70px}
-  footer{border-top:1px solid var(--line);background:var(--ink);color:#cdd9e2;padding:48px 0 36px;margin-top:20px}
+  .note{color:var(--muted);font-size:13px;margin-top:6px}
+  @media (prefers-reduced-motion:reduce){.qrow,.reveal{opacity:1;transform:none;transition:none}.chip.confirm{animation:none}}
+  footer{border-top:1px solid var(--line);background:var(--ink);color:#cdd9e2;padding:46px 0 34px;margin-top:30px}
   .foot-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:#8499a8}
   .foot-row a{color:#cdd9e2;text-decoration:none}.foot-row a:hover{color:#fff}
-  @media (max-width:860px){.hero h1{font-size:30px}.shows{grid-template-columns:1fr}.viewer iframe{height:420px}}
+  @media (max-width:780px){.hero h1{font-size:30px}.shows{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap nav">
     <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
-    <a href="mailto:hello@compliancecrib.co.uk?subject=Security%20questionnaire" class="btn">Get your next one done</a>
+    <a href="book.html" class="btn">Get yours done</a>
   </div>
 </header>
 
@@ -57,25 +78,86 @@
   <div class="wrap narrow">
     <p class="eyebrow">Worked example</p>
     <h1>See exactly how it comes back.</h1>
-    <p>This is a real slice of a CAIQ security questionnaire, completed from a sample MSP's own documents. It shows the range: a confident answer where the evidence supports it, an honest <em>partial</em> where it only half does, and a flag where the answer simply isn't in the documents yet.</p>
-    <div class="cta-row">
-      <a href="Worked_Example_Security_Questionnaire.pdf" class="btn" download>Download the PDF</a>
-      <a href="mailto:hello@compliancecrib.co.uk?subject=Security%20questionnaire" class="btn ghost">Get yours done</a>
+    <p>A real slice of a CAIQ security questionnaire, completed from a sample MSP's own documents. Notice the range: a confident answer where the evidence supports it, an honest <em>partial</em> where it only half does, and a flag where the answer simply isn't in the documents yet.</p>
+    <div class="legend">
+      <span><span class="dotc dy"></span> Supported by your docs</span>
+      <span><span class="dotc dp"></span> Partially in place</span>
+      <span><span class="dotc dc"></span> Needs your input</span>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section>
   <div class="wrap narrow">
-    <div class="shows">
+    <div class="doc">
+      <div class="doc-top">
+        <div class="t">Consensus Assessments Initiative Questionnaire (CAIQ)<small>COMPLETED &middot; SAMPLE MSP LTD</small></div>
+        <div class="stamp">3 DAYS</div>
+      </div>
+
+      <div class="qrow">
+        <div>
+          <span class="qid">A&amp;A-01.1</span>
+          <div class="qtext">Are audit and assurance policies, procedures and standards established, documented and maintained?</div>
+          <div class="qbasis"><b>Basis:</b> ISO 27001 certificate (valid to 2026) and Information Security Policy, section 4. Reviewed annually by the directors.</div>
+        </div>
+        <span class="chip yes">YES</span>
+      </div>
+
+      <div class="qrow">
+        <div>
+          <span class="qid">A&amp;A-02.1</span>
+          <div class="qtext">Are independent audits and assessments conducted at least annually?</div>
+          <div class="qbasis"><b>Basis:</b> External ISO 27001 surveillance audit completed annually; most recent certificate provided.</div>
+        </div>
+        <span class="chip yes">YES</span>
+      </div>
+
+      <div class="qrow">
+        <div>
+          <span class="qid">A&amp;A-03.1</span>
+          <div class="qtext">Are assessments performed on a risk-based schedule, triggered by significant change?</div>
+          <div class="qbasis"><b>Basis:</b> Risk reviews happen, but a documented change-triggered schedule isn't evidenced in the policy. <b>[Confirm with you]</b></div>
+        </div>
+        <span class="chip partial">PARTIAL</span>
+      </div>
+
+      <div class="qrow">
+        <div>
+          <span class="qid">IAM-01.1</span>
+          <div class="qtext">Is an identity and access management policy established and enforced?</div>
+          <div class="qbasis"><b>Basis:</b> Access Control Policy, section 2. MFA enforced across all admin accounts per the same document.</div>
+        </div>
+        <span class="chip yes">YES</span>
+      </div>
+
+      <div class="qrow">
+        <div>
+          <span class="qid">DSP-05.1</span>
+          <div class="qtext">Is data classification applied to all data and objects containing data?</div>
+          <div class="qbasis"><b>Basis:</b> Not found in the documents provided. We've flagged it rather than guess, so you can confirm before it's submitted. <b>[Needs your input]</b></div>
+        </div>
+        <span class="chip confirm">CONFIRM</span>
+      </div>
+    </div>
+    <p class="note">Illustrative sample using fictional company data. CAIQ is a standard of the Cloud Security Alliance.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <div class="shows reveal">
       <div class="show"><span class="chip yes">YES</span><p>Confident answers, but only where your documents actually support them.</p></div>
       <div class="show"><span class="chip partial">PARTIAL</span><p>Honest where a control is only half in place, with exactly what's missing.</p></div>
-      <div class="show"><span class="chip confirm">CONFIRM</span><p>Flagged, not bluffed, when an answer isn't in your documents. This is what protects you in a review.</p></div>
+      <div class="show"><span class="chip confirm">CONFIRM</span><p>Flagged, never bluffed, when an answer isn't in your documents. This is what protects you in a review.</p></div>
     </div>
-    <div class="viewer">
-      <iframe src="Worked_Example_Security_Questionnaire.pdf" title="Worked example PDF"></iframe>
+    <div class="reveal" style="text-align:center;margin:10px 0 50px">
+      <div class="cta-row" style="justify-content:center">
+        <a href="book.html" class="btn">Get yours done in 3 days</a>
+        <a href="Worked_Example_Security_Questionnaire.pdf" class="btn ghost" download>Download as PDF</a>
+      </div>
+      <p class="note">£349 per questionnaire. You only pay if you're happy with the result.</p>
     </div>
-    <p style="color:var(--muted);font-size:13.5px">Illustrative sample using fictional company data. CAIQ is a standard of the Cloud Security Alliance.</p>
   </div>
 </section>
 
@@ -83,10 +165,16 @@
   <div class="wrap">
     <div class="foot-row">
       <span>&copy; <span id="yr"></span> ComplianceCrib</span>
-      <span><a href="index.html">Home</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
+      <span><a href="index.html">Home</a> &nbsp;&middot;&nbsp; <a href="book.html">Get started</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  // staggered reveal of questionnaire rows + sections
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.qrow').forEach(function(el,i){el.style.transitionDelay=(i*90)+'ms';io.observe(el);});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+</script>
 </body>
 </html>
