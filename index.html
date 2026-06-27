@@ -108,7 +108,7 @@
   .qchip.confirm{color:#fff;background:var(--confirm)}
 
   /* stats */
-  .stats{background:#0B1B2B;border-top:1px solid rgba(255,255,255,.06);padding:30px 0}
+  .stats{background:#0B1B2B;border-top:1px solid rgba(255,255,255,.06);padding:clamp(2.5rem,5vw,3.75rem) 0}
   .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
   .stat{text-align:center;color:#cfdce7}
   .stat .num{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:34px;color:#fff;letter-spacing:-.02em}
@@ -116,7 +116,7 @@
   .stat .cap{font-size:12.5px;color:#8ea3b4;margin-top:3px;font-family:"IBM Plex Mono",monospace;letter-spacing:.03em}
 
   /* generic sections */
-  .section{padding:90px 0;border-top:1px solid var(--line)}
+  .section{padding:clamp(4rem,8vw,8rem) 0;border-top:1px solid var(--line)}
   .section h2{font-size:33px;margin:12px 0 14px}
   .section .intro{color:var(--muted);max-width:42em;font-size:16.5px}
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -195,7 +195,6 @@
     .stats-grid{grid-template-columns:1fr 1fr;gap:26px}
     .steps,.feats{grid-template-columns:1fr}
     .price-card{grid-template-columns:1fr;text-align:left}
-    .section{padding:64px 0}
   }
   @media (max-width:640px){
     .nav{position:relative}
@@ -214,8 +213,7 @@
     <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
     <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="navActions"><span></span><span></span><span></span></button>
     <div class="nav-actions" id="navActions">
-      <a href="book.html" class="navlink">Contact</a>
-      <a href="book.html" class="btn">Get your next one done</a>
+      <a href="book.html" class="btn">Get Started</a>
     </div>
   </div>
 </header>
@@ -227,7 +225,7 @@
       <h1 class="fade d1">Client security questionnaires, completed in <span class="hl">3 working days.</span></h1>
       <p class="lead fade d1">SIG, CAIQ or a bespoke vendor form lands right before a contract is signed. We complete it for you, so the deal can close, without you losing a day to a spreadsheet.</p>
       <div class="hero-cta fade d2">
-        <a href="book.html" class="btn lg">Get your next one done</a>
+        <a href="book.html" class="btn lg">Get Started</a>
         <a href="#how" class="btn lg ondark">See how it works</a>
       </div>
       <div class="reassure fade d3">
@@ -325,7 +323,7 @@
         <p class="gtee">You only pay once it's submission-ready and you're happy.</p>
         <div class="gtee-badge"><span class="gi">&#10003;</span> If it's not useful, <b>you pay nothing.</b></div>
       </div>
-      <a href="book.html" class="btn lg">Get your next one done</a>
+      <a href="book.html" class="btn lg">Get Started</a>
     </div>
   </div>
 </section>
@@ -383,10 +381,10 @@
   <div class="wrap">
     <h2 class="reveal">Take your next questionnaire off your plate.</h2>
     <p class="sub reveal">Send it over, or just ask a question. No obligation, and you only pay if you're happy with the result.</p>
-    <a href="book.html" class="btn lg reveal">Get started</a>
+    <a href="book.html" class="btn lg reveal">Get Started</a>
     <div class="foot-row">
       <span>&copy; <span id="yr"></span> ComplianceCrib</span>
-      <span><a href="book.html">Get started</a> &nbsp;&middot;&nbsp; <a href="book.html">Contact</a> &nbsp;&middot;&nbsp; <a href="download.html">Worked example</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
+      <span><a href="book.html">Get Started</a> &nbsp;&middot;&nbsp; <a href="book.html">Contact</a> &nbsp;&middot;&nbsp; <a href="download.html">Worked example</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>
