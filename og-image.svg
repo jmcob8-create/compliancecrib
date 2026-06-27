@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" font-family="'Inter',system-ui,sans-serif">
+  <defs>
+    <radialGradient id="bg" cx="78%" cy="0%" r="120%">
+      <stop offset="0%" stop-color="#143049"/>
+      <stop offset="55%" stop-color="#0B1B2B"/>
+    </radialGradient>
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0H0V46" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="980" cy="120" r="280" fill="#13A6A6" opacity="0.18"/>
+
+  <!-- wordmark -->
+  <g transform="translate(80,86)">
+    <rect width="26" height="26" rx="8" fill="#13A6A6"/>
+    <text x="40" y="21" fill="#ffffff" font-size="26" font-weight="700" letter-spacing="-0.5">ComplianceCrib</text>
+  </g>
+
+  <!-- eyebrow -->
+  <text x="80" y="240" fill="#13A6A6" font-family="'IBM Plex Mono',monospace" font-size="22" font-weight="600" letter-spacing="3">BUILT FOR SMALL MSPS</text>
+
+  <!-- headline -->
+  <text x="78" y="318" fill="#ffffff" font-size="64" font-weight="700" letter-spacing="-1.5">Client security questionnaires,</text>
+  <text x="78" y="392" fill="#ffffff" font-size="64" font-weight="700" letter-spacing="-1.5">completed in <tspan fill="#13A6A6">3 working days.</tspan></text>
+
+  <!-- chips -->
+  <g font-family="'IBM Plex Mono',monospace" font-size="20" font-weight="700">
+    <g transform="translate(80,452)">
+      <rect width="92" height="40" rx="20" fill="#1A9F5B" opacity="0.22"/>
+      <text x="46" y="27" fill="#5fe39c" text-anchor="middle">YES</text>
+    </g>
+    <g transform="translate(188,452)">
+      <rect width="140" height="40" rx="20" fill="#D97706" opacity="0.22"/>
+      <text x="70" y="27" fill="#f5b860" text-anchor="middle">PARTIAL</text>
+    </g>
+    <g transform="translate(344,452)">
+      <rect width="146" height="40" rx="20" fill="#64748B" opacity="0.30"/>
+      <text x="73" y="27" fill="#cbd5e1" text-anchor="middle">CONFIRM</text>
+    </g>
+  </g>
+
+  <!-- footer line -->
+  <text x="80" y="560" fill="#a9bccb" font-size="26">£349 per questionnaire · You only pay if you're happy.</text>
+</svg>
