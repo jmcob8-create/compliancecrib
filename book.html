@@ -37,9 +37,22 @@
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
   .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
   .brand .dot{width:12px;height:12px;border-radius:4px;background:var(--accent);box-shadow:0 0 14px 1px rgba(19,166,166,.7)}
-  .nav-actions{display:flex;align-items:center;gap:22px}
+  .nav-actions{display:flex;align-items:center;gap:24px}
   .navlink{color:#aebecb;text-decoration:none;font-size:14px;font-weight:600;transition:color .15s}
   .navlink:hover{color:#fff}
+  .menu-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:40px;background:transparent;border:1px solid rgba(255,255,255,.16);border-radius:10px;cursor:pointer;padding:0 10px}
+  .menu-btn span{display:block;height:2px;width:100%;background:#fff;border-radius:2px;transition:transform .22s,opacity .22s}
+  .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media (max-width:640px){
+    .nav{position:relative}
+    .menu-btn{display:flex}
+    .nav-actions{position:absolute;top:calc(100% + 1px);right:0;left:0;flex-direction:column;align-items:stretch;gap:14px;background:rgba(11,27,43,.97);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(255,255,255,.1);padding:18px 24px 22px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+    .nav-actions.open{opacity:1;transform:none;pointer-events:auto}
+    .nav-actions .navlink{padding:6px 2px;font-size:15px}
+    .nav-actions .btn{width:100%;justify-content:center}
+  }
   .hero{padding:56px 0 12px}
   .hero h1{font-size:38px;margin:14px 0 14px}
   .hero p{color:var(--muted);font-size:17px;max-width:40em}
@@ -74,7 +87,8 @@
 <header>
   <div class="wrap nav">
     <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
-    <div class="nav-actions">
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="navActions"><span></span><span></span><span></span></button>
+    <div class="nav-actions" id="navActions">
       <a href="book.html" class="navlink">Contact</a>
       <a href="index.html" class="btn" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)">Home</a>
     </div>
@@ -146,6 +160,10 @@
 </footer>
 <script>
   document.getElementById('yr').textContent=new Date().getFullYear();
+  (function(){var mb=document.getElementById('menuBtn'),na=document.getElementById('navActions');if(!mb||!na)return;
+    mb.addEventListener('click',function(){var open=na.classList.toggle('open');mb.setAttribute('aria-expanded',open?'true':'false');});
+    na.addEventListener('click',function(e){if(e.target.closest('a')){na.classList.remove('open');mb.setAttribute('aria-expanded','false');}});
+  })();
   var f=document.getElementById('leadform');
   f.addEventListener('submit',function(e){
     e.preventDefault();

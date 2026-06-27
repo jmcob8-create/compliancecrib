@@ -51,9 +51,14 @@
   .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
   .brand .dot{width:12px;height:12px;border-radius:4px;background:var(--accent);box-shadow:0 0 14px 1px rgba(19,166,166,.7);animation:breathe 3.5s ease-in-out infinite}
   @keyframes breathe{0%,100%{box-shadow:0 0 10px 0 rgba(19,166,166,.55)}50%{box-shadow:0 0 18px 3px rgba(19,166,166,.85)}}
-  .nav-actions{display:flex;align-items:center;gap:22px}
+  .nav-actions{display:flex;align-items:center;gap:24px}
   .navlink{color:#aebecb;text-decoration:none;font-size:14px;font-weight:600;transition:color .15s}
   .navlink:hover{color:#fff}
+  .menu-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:40px;background:transparent;border:1px solid rgba(255,255,255,.16);border-radius:10px;cursor:pointer;padding:0 10px}
+  .menu-btn span{display:block;height:2px;width:100%;background:#fff;border-radius:2px;transition:transform .22s,opacity .22s}
+  .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
   /* hero (dark) */
   .hero{position:relative;background:radial-gradient(120% 120% at 78% 0%,#143049 0%,#0B1B2B 55%);color:#eaf1f6;padding:84px 0 96px;overflow:hidden}
@@ -74,7 +79,7 @@
   @keyframes rise{to{opacity:1;transform:none}}
 
   /* self-completing questionnaire card */
-  .qsim{position:relative;background:#fff;border-radius:18px;box-shadow:var(--glow);overflow:hidden;border:1px solid rgba(255,255,255,.6)}
+  .qsim{position:relative;background:#FAFCFD;border-radius:20px;box-shadow:var(--glow);overflow:hidden;border:1px solid rgba(255,255,255,.25)}
   .qsim-top{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--line);background:#fbfcfd}
   .qsim-top .lbl{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
   .qsim-top .lbl b{color:var(--ink)}
@@ -111,7 +116,7 @@
   .stat .cap{font-size:12.5px;color:#8ea3b4;margin-top:3px;font-family:"IBM Plex Mono",monospace;letter-spacing:.03em}
 
   /* generic sections */
-  .section{padding:74px 0;border-top:1px solid var(--line)}
+  .section{padding:90px 0;border-top:1px solid var(--line)}
   .section h2{font-size:33px;margin:12px 0 14px}
   .section .intro{color:var(--muted);max-width:42em;font-size:16.5px}
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -142,6 +147,14 @@
   .price-card .amt small{font-size:16px;color:var(--muted);font-weight:500}
   .price-card .gtee{font-size:15px;color:var(--ink2);max-width:30em;margin-top:8px;position:relative}
   .price-card .gtee b{color:var(--yes)}
+  .gtee-badge{position:relative;display:inline-flex;align-items:center;gap:9px;margin-top:14px;background:rgba(26,159,91,.10);border:1px solid rgba(26,159,91,.28);color:var(--ink);font-size:14.5px;font-weight:500;padding:9px 15px;border-radius:999px}
+  .gtee-badge b{color:var(--yes);font-weight:700}
+  .gtee-badge .gi{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:var(--yes);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+
+  /* hero frameworks strip */
+  .frameworks{margin-top:22px;display:flex;align-items:center;flex-wrap:wrap;gap:9px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:#8ea3b4}
+  .frameworks .fl{letter-spacing:.04em;margin-right:2px}
+  .frameworks span.fc{color:#cfe0ea;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:4px 10px;border-radius:999px;letter-spacing:.03em}
 
   .example{position:relative;background:linear-gradient(135deg,#0B1B2B,#143049);border-radius:20px;padding:44px;text-align:center;overflow:hidden;color:#fff}
   .example::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(80% 80% at 50% 0%,#000,transparent 75%)}
@@ -161,7 +174,7 @@
 
   /* FAQ */
   .faq{margin-top:36px;display:grid;gap:14px}
-  .faq-item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:2px 24px;transition:box-shadow .22s ease,border-color .22s ease}
+  .faq-item{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:2px 24px;transition:box-shadow .22s ease,border-color .22s ease}
   .faq-item[open]{box-shadow:var(--shadow);border-color:#d3dee6}
   .faq-item summary{list-style:none;cursor:pointer;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:16.5px;color:var(--ink);padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:18px}
   .faq-item summary::-webkit-details-marker{display:none}
@@ -182,7 +195,15 @@
     .stats-grid{grid-template-columns:1fr 1fr;gap:26px}
     .steps,.feats{grid-template-columns:1fr}
     .price-card{grid-template-columns:1fr;text-align:left}
-    .section{padding:56px 0}
+    .section{padding:64px 0}
+  }
+  @media (max-width:640px){
+    .nav{position:relative}
+    .menu-btn{display:flex}
+    .nav-actions{position:absolute;top:calc(100% + 1px);right:0;left:0;flex-direction:column;align-items:stretch;gap:14px;background:rgba(11,27,43,.97);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(255,255,255,.1);padding:18px 24px 22px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+    .nav-actions.open{opacity:1;transform:none;pointer-events:auto}
+    .nav-actions .navlink{padding:6px 2px;font-size:15px}
+    .nav-actions .btn{width:100%;justify-content:center}
   }
 </style>
 </head>
@@ -191,7 +212,8 @@
 <header>
   <div class="wrap nav">
     <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
-    <div class="nav-actions">
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="navActions"><span></span><span></span><span></span></button>
+    <div class="nav-actions" id="navActions">
       <a href="book.html" class="navlink">Contact</a>
       <a href="book.html" class="btn">Get your next one done</a>
     </div>
@@ -211,6 +233,10 @@
       <div class="reassure fade d3">
         <span><span class="tick">&#10003;</span> Pay only if you're happy</span>
         <span><span class="tick">&#10003;</span> You sign off every answer</span>
+      </div>
+      <div class="frameworks fade d3">
+        <span class="fl">We complete:</span>
+        <span class="fc">SIG</span><span class="fc">CAIQ</span><span class="fc">CSA STAR</span><span class="fc">bespoke vendor forms</span>
       </div>
     </div>
 
@@ -296,9 +322,19 @@
     <div class="price-card reveal">
       <div>
         <div class="amt">&pound;349 <small>per questionnaire</small></div>
-        <p class="gtee">You only pay once it's submission-ready and you're happy. <b>If it's not useful, you pay nothing.</b></p>
+        <p class="gtee">You only pay once it's submission-ready and you're happy.</p>
+        <div class="gtee-badge"><span class="gi">&#10003;</span> If it's not useful, <b>you pay nothing.</b></div>
       </div>
       <a href="book.html" class="btn lg">Get your next one done</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="data reveal">
+      <div class="lock">&#128274;</div>
+      <p><b>Your data stays yours.</b> Documents are handled in a private account, never used to train any AI model, never shared, and deleted after delivery. Happy to sign an NDA first, or work from a redacted set.</p>
     </div>
   </div>
 </section>
@@ -310,10 +346,6 @@
       <h2>See exactly how it comes back.</h2>
       <p>A real worked example: a slice of a CAIQ, completed from a sample MSP's documents.</p>
       <a href="download.html" class="btn lg">See a worked example</a>
-    </div>
-    <div class="data reveal">
-      <div class="lock">&#128274;</div>
-      <p><b>Your data stays yours.</b> Documents are handled in a private account, never used to train any AI model, never shared, and deleted after delivery. Happy to sign an NDA first, or work from a redacted set.</p>
     </div>
   </div>
 </section>
@@ -362,6 +394,12 @@
 <script>
   document.getElementById('yr').textContent=new Date().getFullYear();
   var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // mobile nav toggle
+  (function(){var mb=document.getElementById('menuBtn'),na=document.getElementById('navActions');if(!mb||!na)return;
+    mb.addEventListener('click',function(){var open=na.classList.toggle('open');mb.setAttribute('aria-expanded',open?'true':'false');});
+    na.addEventListener('click',function(e){if(e.target.closest('a')){na.classList.remove('open');mb.setAttribute('aria-expanded','false');}});
+  })();
 
   // scroll reveals
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
