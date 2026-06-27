@@ -25,6 +25,8 @@
 <style>
   :root{--ink:#0B1B2B;--ink2:#13314A;--bg:#F5F8FA;--surface:#FFFFFF;--line:#E1E8EE;--muted:#566875;--accent:#13A6A6;--accent2:#0B6E7A;--accent-d:#0a5d68;--yes:#1A9F5B;--shadow:0 1px 2px rgba(11,27,43,.05),0 18px 44px rgba(11,27,43,.10)}
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  #get-started{scroll-margin-top:96px}
   body{font-family:"Inter",system-ui,sans-serif;color:#10283c;background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
   h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.12;letter-spacing:-.025em;font-weight:700}
@@ -38,6 +40,7 @@
   .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
   .brand .dot{width:12px;height:12px;border-radius:4px;background:var(--accent);box-shadow:0 0 14px 1px rgba(19,166,166,.7)}
   .nav-actions{display:flex;align-items:center;gap:24px}
+  .nav-tag{display:none}
   .navlink{color:#aebecb;text-decoration:none;font-size:14px;font-weight:600;transition:color .15s}
   .navlink:hover{color:#fff}
   .menu-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:40px;background:transparent;border:1px solid rgba(255,255,255,.16);border-radius:10px;cursor:pointer;padding:0 10px}
@@ -48,12 +51,12 @@
   @media (max-width:640px){
     .nav{position:relative}
     .menu-btn{display:flex}
-    .nav-actions{position:absolute;top:calc(100% + 1px);right:0;left:0;flex-direction:column;align-items:stretch;gap:14px;background:rgba(11,27,43,.97);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(255,255,255,.1);padding:18px 24px 22px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+    .nav-actions{position:absolute;top:calc(100% + 1px);right:0;left:0;flex-direction:column;align-items:stretch;gap:16px;background:rgba(11,27,43,.97);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(255,255,255,.1);padding:16px 24px 24px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
     .nav-actions.open{opacity:1;transform:none;pointer-events:auto}
-    .nav-actions .navlink{padding:6px 2px;font-size:15px}
+    .nav-tag{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#8ea3b4;padding:0 2px}
     .nav-actions .btn{width:100%;justify-content:center}
   }
-  .hero{padding:56px 0 12px}
+  .hero{padding:56px 0 16px}
   .hero h1{font-size:38px;margin:14px 0 14px}
   .hero p{color:var(--muted);font-size:17px;max-width:40em}
   .layout{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;margin:36px 0 70px;align-items:start}
@@ -89,7 +92,8 @@
     <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
     <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="navActions"><span></span><span></span><span></span></button>
     <div class="nav-actions" id="navActions">
-      <a href="index.html" class="btn" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)">Home</a>
+      <span class="nav-tag">Ready to begin?</span>
+      <a href="#get-started" class="btn">Get Started</a>
     </div>
   </div>
 </header>
@@ -105,7 +109,7 @@
 <section>
   <div class="wrap layout">
 
-    <div class="card">
+    <div class="card" id="get-started">
       <h3>Tell us what you need</h3>
       <p class="sub">We'll reply the same day, usually within a couple of hours.</p>
 

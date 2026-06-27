@@ -40,6 +40,7 @@
   .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:9px}
   .brand .dot{width:11px;height:11px;border-radius:3px;background:var(--accent);box-shadow:0 0 0 4px rgba(11,110,122,.14)}
   .nav-actions{display:flex;align-items:center;gap:24px}
+  .nav-tag{display:none}
   .navlink{color:var(--ink2);text-decoration:none;font-size:14px;font-weight:600;transition:color .15s}
   .navlink:hover{color:var(--accent)}
   .menu-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:40px;background:transparent;border:1px solid var(--line);border-radius:10px;cursor:pointer;padding:0 10px}
@@ -50,12 +51,12 @@
   @media (max-width:640px){
     .nav{position:relative}
     .menu-btn{display:flex}
-    .nav-actions{position:absolute;top:calc(100% + 1px);right:0;left:0;flex-direction:column;align-items:stretch;gap:14px;background:rgba(245,248,250,.98);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line);padding:18px 24px 22px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+    .nav-actions{position:absolute;top:calc(100% + 1px);right:0;left:0;flex-direction:column;align-items:stretch;gap:16px;background:rgba(245,248,250,.98);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line);padding:16px 24px 24px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
     .nav-actions.open{opacity:1;transform:none;pointer-events:auto}
-    .nav-actions .navlink{padding:6px 2px;font-size:15px}
+    .nav-tag{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 2px}
     .nav-actions .btn{width:100%;justify-content:center}
   }
-  .hero{padding:60px 0 22px}
+  .hero{padding:64px 0 24px}
   .hero h1{font-size:38px;margin:14px 0 16px}
   .hero p{color:var(--muted);font-size:17px;max-width:42em}
   .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
@@ -102,7 +103,8 @@
     <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
     <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="navActions"><span></span><span></span><span></span></button>
     <div class="nav-actions" id="navActions">
-      <a href="book.html" class="btn">Get yours done</a>
+      <span class="nav-tag">Ready to begin?</span>
+      <a href="book.html#get-started" class="btn">Get Started</a>
     </div>
   </div>
 </header>
@@ -186,7 +188,7 @@
     </div>
     <div class="reveal" style="text-align:center;margin:10px 0 50px">
       <div class="cta-row" style="justify-content:center">
-        <a href="book.html" class="btn">Get yours done in 3 days</a>
+        <a href="book.html#get-started" class="btn">Get yours done in 3 days</a>
         <a href="ComplianceCrib-Worked-Example.pdf" class="btn ghost" download="ComplianceCrib-Worked-Example.pdf">Download as PDF</a>
       </div>
       <p class="note">£349 per questionnaire. You only pay if you're happy with the result.</p>
