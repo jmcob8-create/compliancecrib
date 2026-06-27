@@ -276,6 +276,139 @@
   </div>
 </section>
 
+<!-- Before/After transformation section (see before_after_section_preview.html) -->
+<section class="ba-section">
+  <div class="ba-inner">
+    <p class="ba-eyebrow">The transformation</p>
+    <h2 class="ba-title">From their spreadsheet to your submission.</h2>
+    <p class="ba-sub">The same questionnaire. Before: a 400-row vendor form with every cell empty. After: completed from your own documents, every answer sourced, gaps flagged, signed off.</p>
+    <div class="ba-stage" aria-hidden="true">
+
+      <div class="ba-before">
+        <div class="ba-file">
+          <span>VendorSec_Questionnaire_2026_FINAL_v7.xlsx</span>
+          <span class="ba-incomplete">INCOMPLETE &middot; 0% DONE</span>
+        </div>
+        <div class="ba-cols"><i>A</i><i>B</i><i>C</i><i>D</i><i>E</i><i>F</i><i>G</i></div>
+        <div class="ba-scrollwrap">
+          <div class="ba-drift">
+            <div class="ba-r"><b>AC-01</b><span>Is multi-factor authentication enforced for all privileged access?</span><em>INCOMPLETE</em></div>
+            <div class="ba-r"><b>DP-04</b><span>Is customer data encrypted at rest using AES-256 or equivalent?</span><em>&mdash;</em></div>
+            <div class="ba-r"><b>IR-02</b><span>Do you maintain a documented incident response plan tested annually?</span><em>&mdash;</em></div>
+            <div class="ba-r"><b>BC-07</b><span>Are RTO and RPO objectives formally defined for critical systems?</span><em>&mdash;</em></div>
+            <div class="ba-r"><b>VM-03</b><span>Are vulnerability scans performed on at least a quarterly cadence?</span><em>&mdash;</em></div>
+            <div class="ba-r ba-flag"><b>AC-09</b><span>Is access de-provisioned within 24 hours of termination?</span><em>INCOMPLETE</em></div>
+            <div class="ba-r"><b>GC-01</b><span>Do you hold a current SOC 2 Type II report covering security?</span><em>&mdash;</em></div>
+            <div class="ba-r"><b>NS-05</b><span>Is network traffic segmented between production and corporate?</span><em>&mdash;</em></div>
+            <div class="ba-r"><b>DP-11</b><span>Are data retention and secure deletion policies enforced on PII?</span><em>&mdash;</em></div>
+            <div class="ba-r"><b>LG-02</b><span>Are audit logs centrally collected and retained for 12 months?</span><em>&mdash;</em></div>
+            <div class="ba-r ba-flag"><b>CM-01</b><span>Is change-management approval required before production deploys?</span><em>INCOMPLETE</em></div>
+            <div class="ba-r"><b>PE-03</b><span>Do you perform background checks on staff with data access?</span><em>&mdash;</em></div>
+            <div class="ba-r"><b>VM-09</b><span>Do you conduct annual independent penetration testing?</span><em>&mdash;</em></div>
+            <div class="ba-r"><b>SD-06</b><span>Are production secrets stored in a managed vault, not source?</span><em>&mdash;</em></div>
+            <div class="ba-r"><b>MA-02</b><span>Is security-awareness training mandatory annually for all staff?</span><em>&mdash;</em></div>
+            <div class="ba-r"><b>AC-14</b><span>Are encryption keys managed via a dedicated KMS?</span><em>&mdash;</em></div>
+          </div>
+          <div class="ba-bar"></div>
+          <div class="ba-vig"></div>
+        </div>
+      </div>
+
+      <div class="ba-after">
+        <div class="ba-ahead">
+          <div>
+            <div class="ba-akick">VENDOR SECURITY ASSESSMENT</div>
+            <div class="ba-atitle">Security Questionnaire</div>
+            <div class="ba-ameta">SOC&nbsp;2 Type&nbsp;II &middot; ISO&nbsp;27001 &middot; Completed 27&nbsp;Jun&nbsp;2026</div>
+          </div>
+          <div class="ba-stamp"><div class="ba-st1">COMPLETED</div><div class="ba-st2">REVIEWED &middot; SIGNED OFF</div></div>
+        </div>
+        <div class="ba-aline"></div>
+        <div class="ba-arows">
+          <div class="ba-ar"><b>AC-01</b><span>Is multi-factor authentication enforced for all privileged access?</span><i class="y">YES</i></div>
+          <div class="ba-ar"><b>DP-04</b><span>Is customer data encrypted at rest using AES-256 or equivalent?</span><i class="y">YES</i></div>
+          <div class="ba-ar"><b>IR-02</b><span>Do you maintain a documented incident response plan tested annually?</span><i class="p">PARTIAL</i></div>
+          <div class="ba-ar"><b>BC-07</b><span>Are RTO and RPO objectives formally defined for critical systems?</span><i class="c">CONFIRM</i></div>
+          <div class="ba-ar"><b>VM-03</b><span>Are vulnerability scans performed on at least a quarterly cadence?</span><i class="y">YES</i></div>
+          <div class="ba-ar"><b>GC-01</b><span>Do you hold a current SOC 2 Type II report covering security?</span><i class="y">YES</i></div>
+        </div>
+        <div class="ba-prog"><div class="ba-progbar"><span></span></div><div class="ba-progtxt">142 / 142 CONTROLS ANSWERED</div></div>
+      </div>
+
+      <div class="ba-scan"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ba-section{padding:72px 0;border-top:1px solid #E1E8EE;background:#fff;font-family:"Inter",system-ui,sans-serif}
+  .ba-inner{max-width:1120px;margin:0 auto;padding:0 24px}
+  .ba-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#13A6A6;margin:0}
+  .ba-title{font-family:"Space Grotesk",sans-serif;font-size:33px;font-weight:700;letter-spacing:-.025em;color:#0B1B2B;margin:12px 0 12px}
+  .ba-sub{color:#566875;font-size:16.5px;max-width:46em;margin:0 0 30px}
+  .ba-stage{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#0B1B2B;box-shadow:0 1px 2px rgba(11,27,43,.05),0 24px 60px -18px rgba(11,27,43,.30);container-type:inline-size;--loop:7s}
+
+  /* BEFORE */
+  .ba-before{position:absolute;inset:0;background:#E7ECEF;display:flex;flex-direction:column;font-family:"IBM Plex Mono",monospace}
+  .ba-file{height:4cqw;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 1.4cqw;background:#DCE2E6;border-bottom:1px solid #C3CCD2;font-size:1.15cqw;color:#5C6A72}
+  .ba-incomplete{font-weight:600;color:#fff;background:#C23B3B;padding:.35cqw .8cqw;border-radius:2px;letter-spacing:.08em;font-size:1.02cqw;animation:ba-blink var(--loop) ease-in-out infinite}
+  .ba-cols{height:1.9cqw;flex:none;display:flex;background:#CDD5DA;color:#7E8C93;border-bottom:1px solid #BAC4CA;font-size:1cqw;line-height:1.9cqw}
+  .ba-cols i{flex:1;text-align:center;border-right:1px solid #BAC4CA;font-style:normal}
+  .ba-cols i:first-child{max-width:5cqw}
+  .ba-scrollwrap{position:relative;flex:1;overflow:hidden}
+  .ba-drift{position:absolute;top:0;left:0;right:0;animation:ba-drift 10s ease-in-out infinite}
+  .ba-r{display:flex;align-items:center;height:2.6cqw;font-size:1.12cqw;color:#59676F;border-bottom:1px solid #D7DEE2;background:#FCFDFE}
+  .ba-r:nth-child(even){background:#F4F7F8}
+  .ba-r b{flex:none;width:7cqw;padding:0 .8cqw;color:#7A8890;font-weight:600;overflow:hidden;white-space:nowrap}
+  .ba-r span{flex:1;padding:0 .8cqw;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;border-left:1px solid #E1E7EB}
+  .ba-r em{flex:none;width:11cqw;text-align:center;font-style:normal;font-size:.95cqw;color:#9AA7AE;border-left:1px solid #E1E7EB}
+  .ba-r.ba-flag em,.ba-r em:first-letter{}
+  .ba-r.ba-flag em{color:#C23B3B;font-weight:600}
+  .ba-bar{position:absolute;top:0;right:0;bottom:0;width:1cqw;background:#D2D9DE;border-left:1px solid #C0C9CF}
+  .ba-bar::after{content:"";position:absolute;top:6%;left:18%;right:18%;height:22%;border-radius:2cqw;background:#A9B5BC}
+  .ba-vig{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;background:radial-gradient(130% 90% at 50% 35%,rgba(255,255,255,0) 52%,rgba(64,86,106,.34) 100%)}
+
+  /* AFTER */
+  .ba-after{position:absolute;inset:0;background:#F5F8FA;clip-path:inset(0 100% 0 0);display:flex;flex-direction:column;padding:4cqw 5cqw 3.2cqw;animation:ba-reveal var(--loop) cubic-bezier(.65,0,.35,1) infinite}
+  .ba-ahead{flex:none;display:flex;justify-content:space-between;align-items:flex-start}
+  .ba-akick{font-family:"IBM Plex Mono",monospace;font-size:1.05cqw;letter-spacing:.22em;color:#13A6A6;font-weight:600}
+  .ba-atitle{font-family:"Space Grotesk",sans-serif;font-size:2.8cqw;font-weight:600;color:#0B1B2B;margin-top:.8cqw;letter-spacing:-.01em}
+  .ba-ameta{font-size:1.2cqw;color:#64748B;margin-top:.7cqw}
+  .ba-stamp{text-align:center;border:.18cqw solid #1A9F5B;border-radius:.6cqw;padding:.8cqw 1.4cqw;background:rgba(26,159,91,.06);transform:rotate(-8deg);animation:ba-stamp var(--loop) ease-out infinite}
+  .ba-st1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.7cqw;letter-spacing:.15em;color:#1A9F5B}
+  .ba-st2{font-family:"IBM Plex Mono",monospace;font-size:.82cqw;letter-spacing:.1em;color:#1A9F5B;margin-top:.3cqw}
+  .ba-aline{height:1px;background:#E2E8EC;margin:2.2cqw 0 .4cqw}
+  .ba-arows{flex:1;display:flex;flex-direction:column;justify-content:space-around}
+  .ba-ar{display:flex;align-items:center;gap:2cqw;padding:.5cqw 0;border-bottom:1px solid #EAEFF3}
+  .ba-ar b{flex:none;width:5cqw;font-family:"IBM Plex Mono",monospace;font-size:1.15cqw;color:#13A6A6;font-weight:600}
+  .ba-ar span{flex:1;font-size:1.35cqw;color:#1B2B38;line-height:1.35}
+  .ba-ar i{flex:none;min-width:7cqw;text-align:center;font-family:"IBM Plex Mono",monospace;font-size:1.02cqw;font-weight:600;letter-spacing:.06em;padding:.45cqw 1cqw;border-radius:.45cqw;font-style:normal}
+  .ba-ar i.y{background:#E3F4EB;color:#1A9F5B}
+  .ba-ar i.p{background:#FBEEDC;color:#D97706}
+  .ba-ar i.c{background:#EAEEF2;color:#64748B}
+  .ba-prog{flex:none;margin-top:1.8cqw;display:flex;align-items:center;gap:1.6cqw}
+  .ba-progbar{flex:1;height:.55cqw;border-radius:.4cqw;background:#E2E8EC;overflow:hidden}
+  .ba-progbar span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#13A6A6,#1A9F5B)}
+  .ba-progtxt{font-family:"IBM Plex Mono",monospace;font-size:1.05cqw;letter-spacing:.05em;color:#0B6E7A;font-weight:600}
+
+  /* SCAN LINE */
+  .ba-scan{position:absolute;top:0;bottom:0;left:0;width:.22cqw;z-index:5;background:#13A6A6;box-shadow:0 0 2.2cqw .5cqw #13A6A6,0 0 6cqw 1.6cqw rgba(19,166,166,.3);animation:ba-scan var(--loop) cubic-bezier(.65,0,.35,1) infinite}
+
+  @keyframes ba-reveal{0%{clip-path:inset(0 100% 0 0);opacity:1}16%{clip-path:inset(0 100% 0 0);opacity:1}46%{clip-path:inset(0 0 0 0);opacity:1}88%{clip-path:inset(0 0 0 0);opacity:1}100%{clip-path:inset(0 0 0 0);opacity:0}}
+  @keyframes ba-scan{0%{left:0;opacity:0}16%{left:0;opacity:0}18%{opacity:1}46%{left:100%;opacity:1}48%{left:100%;opacity:0}100%{left:100%;opacity:0}}
+  @keyframes ba-drift{0%{transform:translateY(-1cqw)}50%{transform:translateY(-12cqw)}100%{transform:translateY(-1cqw)}}
+  @keyframes ba-blink{0%,100%{opacity:.5}50%{opacity:1}}
+  @keyframes ba-stamp{0%,44%{opacity:0;transform:rotate(-8deg) scale(.6)}52%{opacity:1;transform:rotate(-8deg) scale(1.08)}58%{transform:rotate(-8deg) scale(1)}88%{opacity:1;transform:rotate(-8deg) scale(1)}100%{opacity:0;transform:rotate(-8deg) scale(1)}}
+  @media (prefers-reduced-motion:reduce){
+    .ba-after{clip-path:inset(0 0 0 0)!important;opacity:1!important;animation:none!important}
+    .ba-scan{display:none!important}
+    .ba-drift{animation:none!important;transform:translateY(-6cqw)!important}
+    .ba-incomplete{animation:none!important}
+    .ba-stamp{opacity:1!important;transform:rotate(-8deg) scale(1)!important;animation:none!important}
+  }
+  @media (max-width:680px){.ba-title{font-size:25px}.ba-sub{font-size:15px}}
+</style>
+
 <section class="stats">
   <div class="wrap stats-grid" id="stats">
     <div class="stat"><div class="num"><span data-count="3">0</span></div><div class="cap">WORKING-DAY TURNAROUND</div></div>
