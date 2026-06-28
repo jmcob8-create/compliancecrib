@@ -236,7 +236,7 @@
         <input type="email" name="email" placeholder="you@yourmsp.com" autocomplete="email" required aria-label="Work email">
         <input type="hidden" name="_subject" value="New ComplianceCrib hero lead">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <button type="submit" class="btn lg">Get started</button>
+        <button type="submit" class="btn lg">Get a reply</button>
       </form>
       <div class="hero-ok fade d2" id="heroOk" hidden>
         <div class="hok-big">&#10003;</div>
@@ -557,9 +557,9 @@
       fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
         .then(function(r){
           if(r.ok){f.style.display='none';document.getElementById('heroOk').hidden=false;}
-          else{btn.disabled=false;btn.textContent='Get started';alert('Something went wrong. Please email hello@compliancecrib.co.uk directly.');}
+          else{btn.disabled=false;btn.textContent='Get a reply';alert('Something went wrong. Please email hello@compliancecrib.co.uk directly.');}
         })
-        .catch(function(){btn.disabled=false;btn.textContent='Get started';alert('Something went wrong. Please email hello@compliancecrib.co.uk directly.');});
+        .catch(function(){btn.disabled=false;btn.textContent='Get a reply';alert('Something went wrong. Please email hello@compliancecrib.co.uk directly.');});
     });
   })();
 
