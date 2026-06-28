@@ -51,15 +51,7 @@
   .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
   .brand .dot{width:12px;height:12px;border-radius:4px;background:var(--accent);box-shadow:0 0 14px 1px rgba(19,166,166,.7);animation:breathe 3.5s ease-in-out infinite}
   @keyframes breathe{0%,100%{box-shadow:0 0 10px 0 rgba(19,166,166,.55)}50%{box-shadow:0 0 18px 3px rgba(19,166,166,.85)}}
-  .nav-actions{display:flex;align-items:center;gap:24px}
-  .nav-tag{display:none}
-  .navlink{color:#aebecb;text-decoration:none;font-size:14px;font-weight:600;transition:color .15s}
-  .navlink:hover{color:#fff}
-  .menu-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:40px;background:transparent;border:1px solid rgba(255,255,255,.16);border-radius:10px;cursor:pointer;padding:0 10px}
-  .menu-btn span{display:block;height:2px;width:100%;background:#fff;border-radius:2px;transition:transform .22s,opacity .22s}
-  .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
-  .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-cta{flex:none}
 
   /* hero (dark) */
   .hero{position:relative;background:radial-gradient(120% 120% at 78% 0%,#143049 0%,#0B1B2B 55%);color:#eaf1f6;padding:88px 0 96px;overflow:hidden}
@@ -71,7 +63,23 @@
   .hero h1{font-size:50px;color:#fff;margin:18px 0 20px}
   .hero h1 .hl{color:var(--accent);position:relative;white-space:nowrap}
   .hero p.lead{font-size:18.5px;color:#a9bccb;max-width:30em;margin-bottom:30px}
-  .hero-cta{display:flex;gap:13px;flex-wrap:wrap;align-items:center}
+  /* hero email capture */
+  .hero-capture{display:flex;gap:10px;flex-wrap:wrap;align-items:center;max-width:30em}
+  .hero-capture input[type=email]{flex:1 1 220px;min-width:0;font-family:"Inter",sans-serif;font-size:15px;color:#eaf1f6;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:11px;padding:14px 16px;transition:border-color .15s,box-shadow .15s,background .15s}
+  .hero-capture input[type=email]::placeholder{color:#7e93a4}
+  .hero-capture input[type=email]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(19,166,166,.25);background:rgba(255,255,255,.09)}
+  .hero-capture .btn{flex:none}
+  .herolink{display:inline-block;margin-top:14px;font-size:14px;font-weight:600;color:#9fb2c2;text-decoration:none;transition:color .15s}
+  .herolink:hover{color:#fff}
+  .hero-ok{max-width:32em;background:rgba(26,159,91,.08);border:1px solid rgba(26,159,91,.30);border-radius:14px;padding:20px 22px}
+  .hero-ok .hok-big{font-size:30px;color:var(--yes);line-height:1}
+  .hero-ok .hok-t{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:18px;color:#fff;margin:6px 0 6px}
+  .hero-ok p{font-size:14px;color:#a9bccb;margin:0}
+  /* framework tabs */
+  .qtabs{display:inline-flex;gap:4px;margin-bottom:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:4px}
+  .qtab{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.04em;color:#aebecb;background:transparent;border:none;border-radius:8px;padding:7px 14px;cursor:pointer;transition:background .18s,color .18s}
+  .qtab:hover{color:#fff}
+  .qtab.active{background:var(--accent);color:#06231f}
   .reassure{margin-top:22px;font-size:13.5px;color:#9fb2c2;display:flex;gap:20px;flex-wrap:wrap}
   .reassure span{display:flex;align-items:center;gap:8px}
   .tick{color:var(--yes);font-weight:800}
@@ -84,8 +92,10 @@
   .qsim-top{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--line);background:#fbfcfd}
   .qsim-top .lbl{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
   .qsim-top .lbl b{color:var(--ink)}
-  .qstamp{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:700;color:#fff;background:var(--yes);padding:5px 11px;border-radius:999px;opacity:0;transform:scale(.7);transition:opacity .4s,transform .4s cubic-bezier(.2,1.5,.4,1)}
+  .qstamp{text-align:center;border:1.5px solid var(--yes);border-radius:7px;padding:5px 10px;background:rgba(26,159,91,.06);opacity:0;transform:scale(.7);transition:opacity .4s,transform .4s cubic-bezier(.2,1.5,.4,1)}
   .qstamp.show{opacity:1;transform:scale(1)}
+  .qstamp .s1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;color:var(--yes);line-height:1.05}
+  .qstamp .s2{font-family:"IBM Plex Mono",monospace;font-size:8px;font-weight:600;letter-spacing:.07em;color:var(--yes);margin-top:2px}
   .qprog{height:3px;background:var(--line);position:relative;overflow:hidden}
   .qbar{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width .6s cubic-bezier(.3,.7,.3,1)}
   .qbody{position:relative}
@@ -199,12 +209,11 @@
     .section{padding:64px 0}
   }
   @media (max-width:640px){
-    .nav{position:relative}
-    .menu-btn{display:flex}
-    .nav-actions{position:absolute;top:calc(100% + 1px);right:0;left:0;flex-direction:column;align-items:stretch;gap:16px;background:rgba(11,27,43,.97);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(255,255,255,.1);padding:16px 24px 24px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
-    .nav-actions.open{opacity:1;transform:none;pointer-events:auto}
-    .nav-tag{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#8ea3b4;padding:0 2px}
-    .nav-actions .btn{width:100%;justify-content:center}
+    .nav .brand{font-size:18px}
+    .nav .btn{padding:10px 14px;font-size:13.5px}
+    .hero-capture{flex-direction:column;align-items:stretch}
+    .hero-capture input[type=email]{flex:none;width:100%}
+    .hero-capture .btn{width:100%;justify-content:center}
   }
 </style>
 </head>
@@ -213,11 +222,7 @@
 <header>
   <div class="wrap nav">
     <a href="index.html" class="brand"><span class="dot"></span>ComplianceCrib</a>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="navActions"><span></span><span></span><span></span></button>
-    <div class="nav-actions" id="navActions">
-      <span class="nav-tag">Ready to begin?</span>
-      <a href="book.html#get-started" class="btn">Get Started</a>
-    </div>
+    <a href="book.html#get-started" class="btn nav-cta">Get started</a>
   </div>
 </header>
 
@@ -227,10 +232,18 @@
       <p class="eyebrow fade">Built for small MSPs</p>
       <h1 class="fade d1">Client security questionnaires, completed in <span class="hl">3 working days.</span></h1>
       <p class="lead fade d1">SIG, CAIQ or a bespoke vendor form lands right before a contract is signed. We complete it for you, so the deal can close, without you losing a day to a spreadsheet.</p>
-      <div class="hero-cta fade d2">
-        <a href="book.html#get-started" class="btn lg">Get Started</a>
-        <a href="#how" class="btn lg ondark">See how it works</a>
+      <form class="hero-capture fade d2" id="heroform" action="https://formspree.io/f/mdargwga" method="POST" novalidate>
+        <input type="email" name="email" placeholder="you@yourmsp.com" autocomplete="email" required aria-label="Work email">
+        <input type="hidden" name="_subject" value="New ComplianceCrib hero lead">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <button type="submit" class="btn lg">Get started</button>
+      </form>
+      <div class="hero-ok fade d2" id="heroOk" hidden>
+        <div class="hok-big">&#10003;</div>
+        <div class="hok-t">Got it, thank you.</div>
+        <p>We'll be in touch shortly, usually within a couple of hours. If it's urgent, email hello@compliancecrib.co.uk.</p>
       </div>
+      <a href="#how" class="herolink fade d3">See how it works &rarr;</a>
       <div class="reassure fade d3">
         <span><span class="tick">&#10003;</span> Pay only if you're happy</span>
         <span><span class="tick">&#10003;</span> You sign off every answer</span>
@@ -242,10 +255,15 @@
     </div>
 
     <div class="fade d2">
+      <div class="qtabs" role="tablist" aria-label="Framework">
+        <button type="button" class="qtab active" data-fw="caiq" role="tab" aria-selected="true">CAIQ</button>
+        <button type="button" class="qtab" data-fw="sig" role="tab" aria-selected="false">SIG</button>
+        <button type="button" class="qtab" data-fw="star" role="tab" aria-selected="false">CSA STAR</button>
+      </div>
       <div class="qsim" id="qsim">
         <div class="qsim-top">
-          <div class="lbl">CAIQ &middot; <b id="qstate">completing&hellip;</b></div>
-          <div class="qstamp" id="qstamp">3 DAYS &#10003;</div>
+          <div class="lbl"><span id="qframe">CAIQ</span> &middot; <b id="qstate">completing&hellip;</b></div>
+          <div class="qstamp" id="qstamp"><div class="s1">COMPLETE</div><div class="s2">REVIEWED &middot; SIGNED OFF</div></div>
         </div>
         <div class="qprog"><div class="qbar" id="qbar"></div></div>
         <div class="qbody" id="qbody">
@@ -319,7 +337,7 @@
           <div>
             <div class="ba-akick">VENDOR SECURITY ASSESSMENT</div>
             <div class="ba-atitle">Security Questionnaire</div>
-            <div class="ba-ameta">SOC&nbsp;2 Type&nbsp;II &middot; ISO&nbsp;27001 &middot; Completed 27&nbsp;Jun&nbsp;2026</div>
+            <div class="ba-ameta">SOC&nbsp;2 Type&nbsp;II &middot; ISO&nbsp;27001 &middot; Reviewed &middot; Signed off</div>
           </div>
           <div class="ba-stamp"><div class="ba-st1">COMPLETED</div><div class="ba-st2">REVIEWED &middot; SIGNED OFF</div></div>
         </div>
@@ -529,31 +547,93 @@
   document.getElementById('yr').textContent=new Date().getFullYear();
   var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  // mobile nav toggle
-  (function(){var mb=document.getElementById('menuBtn'),na=document.getElementById('navActions');if(!mb||!na)return;
-    mb.addEventListener('click',function(){var open=na.classList.toggle('open');mb.setAttribute('aria-expanded',open?'true':'false');});
-    na.addEventListener('click',function(e){if(e.target.closest('a')){na.classList.remove('open');mb.setAttribute('aria-expanded','false');}});
+  // hero email capture -> Formspree (same endpoint + thank-you as book.html)
+  (function(){
+    var f=document.getElementById('heroform');if(!f)return;
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(!f.email.value){f.email.focus();return;}
+      var btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending…';
+      fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+        .then(function(r){
+          if(r.ok){f.style.display='none';document.getElementById('heroOk').hidden=false;}
+          else{btn.disabled=false;btn.textContent='Get started';alert('Something went wrong. Please email hello@compliancecrib.co.uk directly.');}
+        })
+        .catch(function(){btn.disabled=false;btn.textContent='Get started';alert('Something went wrong. Please email hello@compliancecrib.co.uk directly.');});
+    });
   })();
 
   // scroll reveals
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
   document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=((i%3)*80)+'ms';io.observe(el);});
 
-  // self-completing questionnaire
+  // self-completing questionnaire with framework tabs
   (function(){
     var sim=document.getElementById('qsim'),body=document.getElementById('qbody'),bar=document.getElementById('qbar');
-    var rows=[].slice.call(body.querySelectorAll('.qrow'));
-    var stamp=document.getElementById('qstamp'),state=document.getElementById('qstate');
+    var stamp=document.getElementById('qstamp'),state=document.getElementById('qstate'),frame=document.getElementById('qframe');
+    var tabs=[].slice.call(document.querySelectorAll('.qtab'));
+    // Generic, illustrative question sets — not representations of real completed audits.
+    var data={
+      caiq:{label:'CAIQ',rows:[
+        ['A&A-01.1','Audit & assurance policies established and maintained','yes'],
+        ['A&A-02.1','Independent assessments at least annually','yes'],
+        ['A&A-03.1','Assessments triggered by significant change','partial'],
+        ['IAM-01.1','Identity & access management policy enforced','yes'],
+        ['DSP-05.1','Data classification applied to all data','confirm']
+      ]},
+      sig:{label:'SIG',rows:[
+        ['G.07','Information security policy approved and reviewed','yes'],
+        ['I.12','Logical access granted on a least-privilege basis','yes'],
+        ['K.03','Data encrypted in transit and at rest','partial'],
+        ['L.09','Incident response plan documented and tested','confirm'],
+        ['P.04','Suppliers risk-assessed before onboarding','yes']
+      ]},
+      star:{label:'CSA STAR',rows:[
+        ['GRC-06','Governance & risk management programme established','yes'],
+        ['TVM-03','Vulnerability & patch management operating','yes'],
+        ['DSP-07','Data retention & secure disposal defined','partial'],
+        ['UEM-04','Endpoint & mobile device management enforced','confirm'],
+        ['CCC-02','Change control & approval process in place','yes']
+      ]}
+    };
+    var label={yes:'YES',partial:'PARTIAL',confirm:'CONFIRM'};
+    var timers=[];
+    function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+    function render(key){
+      var html='<div class="qscan"></div>';
+      data[key].rows.forEach(function(r){
+        html+='<div class="qrow" data-chip="'+r[2]+'">'+
+          '<div><span class="qid">'+esc(r[0])+'</span><span class="qtxt">'+esc(r[1])+'</span></div>'+
+          '<div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip '+r[2]+'">'+label[r[2]]+'</span></div>'+
+        '</div>';
+      });
+      body.innerHTML=html;
+      if(frame)frame.textContent=data[key].label;
+    }
+    function settle(){
+      [].slice.call(body.querySelectorAll('.qrow')).forEach(function(r){r.classList.add('done');});
+      bar.style.width='100%';stamp.classList.add('show');state.innerHTML='completed from your documents';
+    }
     function run(){
+      timers.forEach(clearTimeout);timers=[];
+      var rows=[].slice.call(body.querySelectorAll('.qrow'));
       rows.forEach(function(r){r.classList.remove('done');});
       bar.style.width='0';stamp.classList.remove('show');state.innerHTML='completing&hellip;';
       body.classList.remove('running');void body.offsetWidth;body.classList.add('running');
       rows.forEach(function(r,i){
-        setTimeout(function(){r.classList.add('done');bar.style.width=Math.round((i+1)/rows.length*100)+'%';},650+i*620);
+        timers.push(setTimeout(function(){r.classList.add('done');bar.style.width=Math.round((i+1)/rows.length*100)+'%';},650+i*620));
       });
-      setTimeout(function(){stamp.classList.add('show');state.innerHTML='completed from your documents';},650+rows.length*620+250);
+      timers.push(setTimeout(function(){stamp.classList.add('show');state.innerHTML='completed from your documents';},650+rows.length*620+250));
     }
-    if(reduce){rows.forEach(function(r){r.classList.add('done');});bar.style.width='100%';stamp.classList.add('show');state.innerHTML='completed from your documents';return;}
+    function select(key,replay){
+      tabs.forEach(function(t){var on=t.getAttribute('data-fw')===key;t.classList.toggle('active',on);t.setAttribute('aria-selected',on?'true':'false');});
+      render(key);
+      if(reduce){settle();return;}
+      if(replay)run();
+    }
+    tabs.forEach(function(t){t.addEventListener('click',function(){select(t.getAttribute('data-fw'),true);});});
+    render('caiq');
+    if(reduce){settle();return;}
     var once=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run();}});},{threshold:.5});
     once.observe(sim);
   })();
