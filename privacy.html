@@ -25,6 +25,7 @@
 <style>
   :root{--ink:#0E2233;--ink2:#1B3A52;--bg:#F5F8FA;--surface:#FFFFFF;--line:#E1E8EE;--muted:#566875;--accent:#0B6E7A;--accent-d:#085863}
   *{box-sizing:border-box;margin:0;padding:0}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
   body{font-family:"Inter",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
   .narrow{max-width:720px}
@@ -65,6 +66,7 @@
   footer{border-top:1px solid var(--line);background:var(--ink);color:#cdd9e2;padding:40px 0 34px}
   .foot-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:#8499a8}
   .foot-row a{color:#cdd9e2;text-decoration:none}.foot-row a:hover{color:#fff}
+  .foot-row .legal{display:block;margin-top:4px;font-size:12px;color:#64788a}
   @media (max-width:860px){.hero h1{font-size:27px}}
 </style>
 </head>
@@ -75,7 +77,7 @@
     <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="navActions"><span></span><span></span><span></span></button>
     <div class="nav-actions" id="navActions">
       <span class="nav-tag">Ready to begin?</span>
-      <a href="book.html#get-started" class="btn">Get Started</a>
+      <a href="book.html#get-started" class="btn">Get started</a>
     </div>
   </div>
 </header>
@@ -133,8 +135,8 @@
 <footer>
   <div class="wrap">
     <div class="foot-row">
-      <span>&copy; <span id="yr"></span> ComplianceCrib</span>
-      <span><a href="index.html">Home</a> &nbsp;&middot;&nbsp; <a href="book.html">Contact</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a></span>
+      <span>&copy; <span id="yr"></span> ComplianceCrib<span class="legal">ComplianceCrib is a trading name of James Cobb.</span></span>
+      <span><a href="index.html">Home</a> &nbsp;&middot;&nbsp; <a href="book.html">Contact</a> &nbsp;&middot;&nbsp; <a href="index.html#about">About</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a></span>
     </div>
   </div>
 </footer>

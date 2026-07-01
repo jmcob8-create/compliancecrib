@@ -32,6 +32,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
+  a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
   body{font-family:"Inter",system-ui,sans-serif;color:#10283c;background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
   h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.1;letter-spacing:-.025em;font-weight:700}
@@ -69,7 +70,7 @@
   .hero-capture input[type=email]::placeholder{color:#7e93a4}
   .hero-capture input[type=email]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(19,166,166,.25);background:rgba(255,255,255,.09)}
   .hero-capture .btn{flex:none}
-  .herolink{display:inline-block;margin-top:14px;font-size:14px;font-weight:600;color:#9fb2c2;text-decoration:none;transition:color .15s}
+  .herolink{font-size:13.5px;font-weight:600;color:#9fb2c2;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(159,178,194,.45);transition:color .15s}
   .herolink:hover{color:#fff}
   .hero-ok{max-width:32em;background:rgba(26,159,91,.08);border:1px solid rgba(26,159,91,.30);border-radius:14px;padding:20px 22px}
   .hero-ok .hok-big{font-size:30px;color:var(--yes);line-height:1}
@@ -80,7 +81,7 @@
   .qtab{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.04em;color:#aebecb;background:transparent;border:none;border-radius:8px;padding:7px 14px;cursor:pointer;transition:background .18s,color .18s}
   .qtab:hover{color:#fff}
   .qtab.active{background:var(--accent);color:#06231f}
-  .reassure{margin-top:22px;font-size:13.5px;color:#9fb2c2;display:flex;gap:20px;flex-wrap:wrap}
+  .reassure{margin-top:18px;font-size:13.5px;color:#9fb2c2;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
   .reassure span{display:flex;align-items:center;gap:8px}
   .tick{color:var(--yes);font-weight:800}
   .fade{opacity:0;transform:translateY(16px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
@@ -106,6 +107,9 @@
   .qrow:last-child{border-bottom:none}
   .qrow .qid{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--accent2);font-weight:600;display:block;margin-bottom:3px}
   .qrow .qtxt{font-size:13px;color:var(--ink2);line-height:1.4}
+  .qrow .qbasis{display:block;font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted);line-height:1.45;margin-top:4px;opacity:0;transform:translateY(2px);transition:opacity .45s ease .18s,transform .45s ease .18s}
+  .qrow .qbasis b{color:var(--accent2);font-weight:600}
+  .qrow.done .qbasis{opacity:1;transform:none}
   .qcell{min-width:74px;display:flex;justify-content:flex-end}
   .qscanbars{display:flex;gap:3px;align-items:center}
   .qscanbars i{display:block;width:5px;height:5px;border-radius:50%;background:#cbd6de;animation:blink 1s ease-in-out infinite}
@@ -163,7 +167,7 @@
   .gtee-badge .gi{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:var(--yes);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
 
   /* hero frameworks strip */
-  .frameworks{margin-top:22px;display:flex;align-items:center;flex-wrap:wrap;gap:9px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:#8ea3b4}
+  .frameworks{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:9px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:#8ea3b4}
   .frameworks .fl{letter-spacing:.04em;margin-right:2px}
   .frameworks span.fc{color:#cfe0ea;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:4px 10px;border-radius:999px;letter-spacing:.03em}
 
@@ -183,6 +187,11 @@
   .data p{font-size:14.5px;color:var(--muted)}
   .data b{color:var(--ink)}
 
+  /* about */
+  .about{max-width:46em;color:var(--ink2);font-size:16px;margin-top:24px}
+  .about p{margin-bottom:14px}
+  .about p:last-child{margin-bottom:0}
+
   /* FAQ */
   .faq{margin-top:36px;display:grid;gap:14px}
   .faq-item{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:2px 24px;transition:box-shadow .22s ease,border-color .22s ease}
@@ -199,8 +208,9 @@
   footer p.sub{color:#9fb2c0;margin-bottom:28px;max-width:34em}
   .foot-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:52px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#8499a8}
   .foot-row a{color:#cdd9e2;text-decoration:none}.foot-row a:hover{color:#fff}
+  .foot-row .legal{display:block;margin-top:4px;font-size:12px;color:#64788a}
 
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.fade,.reveal{opacity:1;transform:none}.qchip{opacity:1;transform:none}.qscanbars{display:none}.qstamp{opacity:1;transform:none}.qbar{width:100%!important}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.fade,.reveal{opacity:1;transform:none}.qchip{opacity:1;transform:none}.qscanbars{display:none}.qstamp{opacity:1;transform:none}.qbar{width:100%!important}.qrow .qbasis{opacity:1;transform:none}}
   @media (max-width:880px){
     .hero-grid{grid-template-columns:1fr;gap:40px}.hero{padding:56px 0 64px}.hero h1{font-size:37px}
     .stats-grid{grid-template-columns:1fr 1fr;gap:24px}
@@ -243,10 +253,10 @@
         <div class="hok-t">Got it, thank you.</div>
         <p>We'll be in touch shortly, usually within a couple of hours. If it's urgent, email hello@compliancecrib.co.uk.</p>
       </div>
-      <a href="#how" class="herolink fade d3">See how it works &rarr;</a>
       <div class="reassure fade d3">
         <span><span class="tick">&#10003;</span> Pay only if you're happy</span>
         <span><span class="tick">&#10003;</span> You sign off every answer</span>
+        <a href="#how" class="herolink">See how it works &rarr;</a>
       </div>
       <div class="frameworks fade d3">
         <span class="fl">We complete:</span>
@@ -269,23 +279,23 @@
         <div class="qbody" id="qbody">
           <div class="qscan"></div>
           <div class="qrow" data-chip="yes">
-            <div><span class="qid">A&amp;A-01.1</span><span class="qtxt">Audit &amp; assurance policies established and maintained</span></div>
+            <div><span class="qid">A&amp;A-01.1</span><span class="qtxt">Audit &amp; assurance policies established and maintained</span><span class="qbasis"><b>Basis:</b> Information Security Policy, &sect;4</span></div>
             <div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip yes">YES</span></div>
           </div>
           <div class="qrow" data-chip="yes">
-            <div><span class="qid">A&amp;A-02.1</span><span class="qtxt">Independent assessments at least annually</span></div>
+            <div><span class="qid">A&amp;A-02.1</span><span class="qtxt">Independent assessments at least annually</span><span class="qbasis"><b>Basis:</b> ISO 27001 surveillance audit, annual</span></div>
             <div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip yes">YES</span></div>
           </div>
           <div class="qrow" data-chip="partial">
-            <div><span class="qid">A&amp;A-03.1</span><span class="qtxt">Assessments triggered by significant change</span></div>
+            <div><span class="qid">A&amp;A-03.1</span><span class="qtxt">Assessments triggered by significant change</span><span class="qbasis"><b>Basis:</b> risk reviews evidenced; change trigger not documented</span></div>
             <div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip partial">PARTIAL</span></div>
           </div>
           <div class="qrow" data-chip="yes">
-            <div><span class="qid">IAM-01.1</span><span class="qtxt">Identity &amp; access management policy enforced</span></div>
+            <div><span class="qid">IAM-01.1</span><span class="qtxt">Identity &amp; access management policy enforced</span><span class="qbasis"><b>Basis:</b> Access Control Policy, &sect;2 &middot; MFA enforced</span></div>
             <div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip yes">YES</span></div>
           </div>
           <div class="qrow" data-chip="confirm">
-            <div><span class="qid">DSP-05.1</span><span class="qtxt">Data classification applied to all data</span></div>
+            <div><span class="qid">DSP-05.1</span><span class="qtxt">Data classification applied to all data</span><span class="qbasis">Not found in your documents &mdash; flagged for you</span></div>
             <div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip confirm">CONFIRM</span></div>
           </div>
         </div>
@@ -299,7 +309,7 @@
   <div class="ba-inner">
     <p class="ba-eyebrow">The transformation</p>
     <h2 class="ba-title">From their spreadsheet to your submission.</h2>
-    <p class="ba-sub">The same questionnaire. Before: a 400-row vendor form with every cell empty. After: completed from your own documents, every answer sourced, gaps flagged, signed off.</p>
+    <p class="ba-sub">And this is the full job, not just five rows: a 400-row vendor form with every cell empty, returned submission-ready &mdash; every answer sourced, gaps flagged, signed off.</p>
     <div class="ba-stage" aria-hidden="true">
 
       <div class="ba-before">
@@ -429,9 +439,9 @@
 
 <section class="stats">
   <div class="wrap stats-grid" id="stats">
-    <div class="stat"><div class="num"><span data-count="3">0</span></div><div class="cap">WORKING-DAY TURNAROUND</div></div>
-    <div class="stat"><div class="num"><span class="u">~</span><span data-count="15">0</span> <span style="font-size:20px">min</span></div><div class="cap">OF YOUR TIME</div></div>
-    <div class="stat"><div class="num"><span class="u">&pound;</span><span data-count="349">0</span></div><div class="cap">FLAT, PER QUESTIONNAIRE</div></div>
+    <div class="stat"><div class="num"><span data-count="3">3</span></div><div class="cap">WORKING-DAY TURNAROUND</div></div>
+    <div class="stat"><div class="num"><span class="u">~</span><span data-count="15">15</span> <span class="u">min</span></div><div class="cap">OF YOUR TIME</div></div>
+    <div class="stat"><div class="num"><span class="u">&pound;</span><span data-count="349">349</span></div><div class="cap">FLAT, PER QUESTIONNAIRE</div></div>
     <div class="stat"><div class="num"><span class="u">&#10003;</span></div><div class="cap">PAY ONLY IF HAPPY</div></div>
   </div>
 </section>
@@ -477,16 +487,7 @@
         <p class="gtee">You only pay once it's submission-ready and you're happy.</p>
         <div class="gtee-badge"><span class="gi">&#10003;</span> If it's not useful, <b>you pay nothing.</b></div>
       </div>
-      <a href="book.html#get-started" class="btn lg">Get Started</a>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="data reveal">
-      <div class="lock">&#128274;</div>
-      <p><b>Your data stays yours.</b> Documents are handled in a private account, never used to train any AI model, never shared, and deleted after delivery. Happy to sign an NDA first, or work from a redacted set.</p>
+      <a href="book.html#get-started" class="btn lg">Get started</a>
     </div>
   </div>
 </section>
@@ -498,6 +499,10 @@
       <h2>See exactly how it comes back.</h2>
       <p>A real worked example: a slice of a CAIQ, completed from a sample MSP's documents.</p>
       <a href="download.html" class="btn lg">See a worked example</a>
+    </div>
+    <div class="data reveal">
+      <div class="lock">&#128274;</div>
+      <p><b>Your data stays yours.</b> Documents are handled in a private account, never used to train any AI model, never shared, and deleted after delivery. Happy to sign an NDA first, or work from a redacted set.</p>
     </div>
   </div>
 </section>
@@ -531,14 +536,26 @@
   </div>
 </section>
 
+<section class="section" id="about">
+  <div class="wrap">
+    <p class="eyebrow reveal">Who's behind this</p>
+    <h2 class="reveal">A person, not a platform.</h2>
+    <div class="about reveal">
+      <p>I'm James. I built ComplianceCrib after watching small MSPs lose whole days &mdash; usually a director's &mdash; to security questionnaires that land right before a deal signs.</p>
+      <p>I'm a final-year business student, not a big compliance firm, and I won't pretend otherwise. What you get is careful work: every answer drafted from your own documents, and I personally review every line before it comes back to you. Anything your documents don't support gets flagged, never guessed.</p>
+      <p>You review it, you sign it off, and you only pay if it's useful.</p>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <h2 class="reveal">Take your next questionnaire off your plate.</h2>
     <p class="sub reveal">Send it over, or just ask a question. No obligation, and you only pay if you're happy with the result.</p>
-    <a href="book.html#get-started" class="btn lg reveal">Get Started</a>
+    <a href="book.html#get-started" class="btn lg reveal">Get started</a>
     <div class="foot-row">
-      <span>&copy; <span id="yr"></span> ComplianceCrib</span>
-      <span><a href="book.html">Get Started</a> &nbsp;&middot;&nbsp; <a href="book.html">Contact</a> &nbsp;&middot;&nbsp; <a href="download.html">Worked example</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
+      <span>&copy; <span id="yr"></span> ComplianceCrib<span class="legal">ComplianceCrib is a trading name of James Cobb.</span></span>
+      <span><a href="book.html">Get started</a> &nbsp;&middot;&nbsp; <a href="book.html">Contact</a> &nbsp;&middot;&nbsp; <a href="#about">About</a> &nbsp;&middot;&nbsp; <a href="download.html">Worked example</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@compliancecrib.co.uk">hello@compliancecrib.co.uk</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>
@@ -575,25 +592,25 @@
     // Generic, illustrative question sets — not representations of real completed audits.
     var data={
       caiq:{label:'CAIQ',rows:[
-        ['A&A-01.1','Audit & assurance policies established and maintained','yes'],
-        ['A&A-02.1','Independent assessments at least annually','yes'],
-        ['A&A-03.1','Assessments triggered by significant change','partial'],
-        ['IAM-01.1','Identity & access management policy enforced','yes'],
-        ['DSP-05.1','Data classification applied to all data','confirm']
+        ['A&A-01.1','Audit & assurance policies established and maintained','yes','Information Security Policy, §4'],
+        ['A&A-02.1','Independent assessments at least annually','yes','ISO 27001 surveillance audit, annual'],
+        ['A&A-03.1','Assessments triggered by significant change','partial','risk reviews evidenced; change trigger not documented'],
+        ['IAM-01.1','Identity & access management policy enforced','yes','Access Control Policy, §2 · MFA enforced'],
+        ['DSP-05.1','Data classification applied to all data','confirm','']
       ]},
       sig:{label:'SIG',rows:[
-        ['G.07','Information security policy approved and reviewed','yes'],
-        ['I.12','Logical access granted on a least-privilege basis','yes'],
-        ['K.03','Data encrypted in transit and at rest','partial'],
-        ['L.09','Incident response plan documented and tested','confirm'],
-        ['P.04','Suppliers risk-assessed before onboarding','yes']
+        ['G.07','Information security policy approved and reviewed','yes','Information Security Policy, director-approved'],
+        ['I.12','Logical access granted on a least-privilege basis','yes','Access Control Policy, §3'],
+        ['K.03','Data encrypted in transit and at rest','partial','TLS in transit evidenced; at-rest coverage partial'],
+        ['L.09','Incident response plan documented and tested','confirm',''],
+        ['P.04','Suppliers risk-assessed before onboarding','yes','Supplier Management Policy, §1']
       ]},
       star:{label:'CSA STAR',rows:[
-        ['GRC-06','Governance & risk management programme established','yes'],
-        ['TVM-03','Vulnerability & patch management operating','yes'],
-        ['DSP-07','Data retention & secure disposal defined','partial'],
-        ['UEM-04','Endpoint & mobile device management enforced','confirm'],
-        ['CCC-02','Change control & approval process in place','yes']
+        ['GRC-06','Governance & risk management programme established','yes','Risk Management Policy, §1'],
+        ['TVM-03','Vulnerability & patch management operating','yes','patch schedule, RMM export'],
+        ['DSP-07','Data retention & secure disposal defined','partial','retention defined; disposal not evidenced'],
+        ['UEM-04','Endpoint & mobile device management enforced','confirm',''],
+        ['CCC-02','Change control & approval process in place','yes','Change Management Procedure, §2']
       ]}
     };
     var label={yes:'YES',partial:'PARTIAL',confirm:'CONFIRM'};
@@ -602,8 +619,9 @@
     function render(key){
       var html='<div class="qscan"></div>';
       data[key].rows.forEach(function(r){
+        var basis=r[2]==='confirm'?'Not found in your documents — flagged for you':'<b>Basis:</b> '+esc(r[3]);
         html+='<div class="qrow" data-chip="'+r[2]+'">'+
-          '<div><span class="qid">'+esc(r[0])+'</span><span class="qtxt">'+esc(r[1])+'</span></div>'+
+          '<div><span class="qid">'+esc(r[0])+'</span><span class="qtxt">'+esc(r[1])+'</span><span class="qbasis">'+basis+'</span></div>'+
           '<div class="qcell"><span class="qscanbars"><i></i><i></i><i></i></span><span class="qchip '+r[2]+'">'+label[r[2]]+'</span></div>'+
         '</div>';
       });
@@ -648,7 +666,10 @@
         requestAnimationFrame(tick);
       });
     }
-    if(reduce){grid.querySelectorAll('[data-count]').forEach(function(el){el.textContent=el.getAttribute('data-count');});return;}
+    // Markup already contains the real values (no-JS / raw-HTML safe).
+    // Only zero them when JS is running and motion is allowed, so the count-up plays.
+    if(reduce)return;
+    grid.querySelectorAll('[data-count]').forEach(function(el){el.textContent='0';});
     var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){animate();so.disconnect();}});},{threshold:.5});
     so.observe(grid);
   })();
